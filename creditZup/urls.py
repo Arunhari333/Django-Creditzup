@@ -1,4 +1,4 @@
-"""tutorial URL Configuration
+"""creditZup URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from tutorial import views
+from creditZup import views
 
 urlpatterns = [
     path('', views.login_redirect, name='login_redirect'),

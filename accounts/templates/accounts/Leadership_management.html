@@ -84,14 +84,18 @@
     }
 
     .container1{
-
-        left:15%;
-        width:700px;
-		background-image:url("{% static 'accounts/images/img.jpg' %}");
-		background-repeat:no-repeat;
-		background-size:cover;
+        left:18%;
+        width:55%;
+		background-color: #b19cd9;
         text-align:center;
-        color:white;}
+        color:white;
+    }
+
+    input{
+        height: 25px;
+        width: 250px;
+    }
+
         </style>
           {% endblock %}
           </head>
@@ -110,11 +114,9 @@
 
         <h2>Certificate</h2>
          <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            {{ form.as_p }}
-
-            <input type="submit">
+             {% csrf_token %}
+             {{ form.as_p }}
+             <button type="submit">Submit</button>
          </form>
          <br>
        </div>

@@ -83,24 +83,22 @@
     }
 
     .container1{
-
-        left:15%;
-        width:800px;
-        height:365px;
-		background-image:url("{% static 'accounts/images/img.jpg' %}");
-		background-repeat:no-repeat;
-		background-size:cover;
-        text-align:center;
-        color:white;}
-
-        </style>
-          {% endblock %}
-                 <body class="Natpage" >
-                 {% block content %}
-                 <div class="hero-image">
+        margin-bottom: 50px;
+        left:18%;
+        width:55%;
+        height:56%;
+	    background-color: #b19cd9;
+	    background-size: cover;
+	    text-align:center;
+        color:white;
+    }
+    </style>
+    {% endblock %}
+    <body class="Natpage" >
+    {% block content %}
+    <div class="hero-image">
       <div class="hero-text">
         <h1 style="font-size:50px">Sports and Games</h1>
-
       </div>
     </div>
     {% endblock %}
@@ -114,7 +112,7 @@
 
             {{ form.as_p }}
 
-            <input type="submit">
+            <button type="submit">Submit</button>
          </form>
          <br>
        </div>

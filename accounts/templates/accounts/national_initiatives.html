@@ -1,11 +1,10 @@
-        {% extends 'base2.html' %}
-            {% block head %}
-                    <title>National Initiatives Participation</title>
-                    {% load static %}
-                    <link  rel="stylesheet" href="{% static 'accounts/css/stylesheet.css' %}" type="text/css">
-
-           <style>
-   body,html {
+{% extends 'base2.html' %}
+{% block head %}
+    <title>National Initiatives Participation</title>
+    {% load static %}
+    <link  rel="stylesheet" href="{% static 'accounts/css/stylesheet.css' %}" type="text/css">
+    <style>
+    body,html {
         height: 100%;
         margin: 0;
     }
@@ -13,9 +12,6 @@
     .hero-image {
       background-image:url("{% static 'accounts/images/national.jpg' %}");
       height: 50%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
       position: relative;
     }
 
@@ -81,44 +77,35 @@
       background-color: rgba(0, 0, 0, 0.1);
     }
 
-    .container1{
-
-        left:15%;
-        width:700px;
-        height:350px;
-		background-image:url("{% static 'accounts/images/img.jpg' %}");
-		background-repeat:no-repeat;
-		background-size:cover;
-        text-align:center;
-        color:white;}
+   .container1{
+       margin-bottom: 50px;
+       left:18%;
+       width:55%;
+       height:50%;
+	   background-color: #b19cd9;
+	   background-size: cover;
+	   text-align:center;
+       color:white;
+   }
 
     </style>
-          {% endblock %}
-                 <body class="Natpage" >
-                 {% block content %}
-                 <div class="hero-image">
-      <div class="hero-text">
-
-       <h1 style="font-size:50px" >National Innitiative Participation</h1>
-
-      </div>
-    </div>
     {% endblock %}
-
-    {% block body %}
-    <div class="container1">
-
-   <h2>Certificate</h2>
-
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-
-        {{ form.as_p }}
-
-        <input type="submit">
-    </form>
-    <br>
-
-    </div>
-    {% endblock %}
+    <body class="Natpage" >
+        {% block content %}
+            <div class="hero-image">
+                <div class="hero-text">
+                    <h1 style="font-size:50px" >National Innitiative Participation</h1>
+                </div>
+            </div>
+        {% endblock %}
+        {% block body %}
+            <div class="container1">
+                <h2>Certificate</h2>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        {% endblock %}
     </body>

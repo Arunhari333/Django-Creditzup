@@ -1,0 +1,38 @@
+{% extends 'base2.html' %}
+    {% block head %}
+        <title>Edit Uploads</title>
+        <style>
+            .container1{
+                margin-bottom: 50px;
+                left:18%;
+                width:55%;
+                height:56%;
+                background-color: #b19cd9;
+                background-size: cover;
+                text-align:center;
+                color:white;
+            }
+            .h1{
+                font-size: 4rem;
+                line-height: 110%;
+                font-weight: 400;
+                font-family: "Roboto", sans-serif;
+            }
+        </style>
+    {% endblock %}
+
+    {% block content %}
+        <h1 align="center" class="h1"><em>CreditZup</em></h1>
+    {% endblock %}
+
+    {% block body %}
+        <div class="container1">
+            <h2>Change Uploaded Data</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+            <br>
+        </div>
+    {% endblock %}

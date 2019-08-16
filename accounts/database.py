@@ -62,3 +62,94 @@ for i in range(1, 5):
 l[51] = 30
 l[52] = 25
 l[53] = 15
+
+class lead():
+    CHOICE = {0: 'Select:',
+              1: 'Student Professional Societies IEEE,IET, ASME, SAE,NASA etc.',
+              2: 'College Association Chapters Mechanical, Civil,Electrical etc.',
+              3: 'Festival & Technical EventsCollege approved',
+              4: 'Hobby Clubs',
+              5: 'Special InitiativesApproval from College and University is mandatory'}
+
+    CHOICE1 = {0: 'Select:', 1: 'Core coordinator', 2: 'Sub coordinator', 3: 'Volunteer'}
+    CHOICE2 = {0: 'Select:', 1: '(a) Certificate', 2: '(b) Letter from Authorities',
+               3: '(c) Appreciation recognition letter', 4: '(d) Documentary evidence',
+               5: '(e) Legal Proof', 6: 'Others'}
+class nat():
+    CHOICE = {1: 'Yes', 2: 'No'}
+    CHOICE1 = {0: 'Select:', 1: 'NCC', 2: 'NSS'}
+    CHOICE2 = {0: 'Select:',
+               1: 'C certificateos performance',
+               2: 'Best NSS Volunteer AwardeeUniversity Level',
+               3: 'Participation in National Integration Camp',
+               4: 'Participation in Pre-Republic Day Parade Camp',
+               5: 'Best NSS AwardeeState Level/National Level',
+               6: 'Participation in Republic Day Parade Camp',
+               7: 'International Youth Exchange Programme',
+               8: 'Others'}
+    CHOICE3 = {0: 'Select:', 1: '(a) Certificate', 2: '(b) Letter from Authorities',
+               3: '(c) Appreciation recognition letter', 4: '(d) Documentary evidence',
+               5: '(e) Legal Proof', 6: 'Others'}
+
+class cult():
+    CHOICE = {1: 'Yes', 2: 'No'}
+    CHOICE1 = {0: 'Select:', 1: 'Music', 2: 'Performing Arts', 3: 'Literary Arts'}
+    CHOICE2 = {0: 'Select:', 1: 'College Events', 2: 'Zonal Events', 3: 'State/ University Events',
+               4: 'National Events', 5: 'International Events'}
+    CHOICE3 = {0: 'Select:', 1: 'First', 2: 'Second', 3: 'Third'}
+    CHOICE4 = {0: 'Select:', 1: '(a) Certificate', 2: '(b) Letter from Authorities',
+               3: '(c) Appreciation recognition letter', 4: '(d) Documentary evidence',
+               5: '(e) Legal Proof', 6: 'Others'}
+
+class prof():
+    CHOICE = {0: 'Select:',
+              1: 'Tech Fest, Tech Quiz',
+              2: 'MOOC with final assessment certificate',
+              3: 'Competitions conducted by Professional Societies - IEEE, IET, ASME, SAE, NASA etc.',
+              4: 'Attending Full time Conference/Seminars /Exhibitions/Workshop/STTP conducted at IITs/NITs',
+              5: 'Paper presentation/publication at IITs/NITs',
+              6: 'Poster Presentation at IITs /NITs',
+              7: 'Industrial Training/Internship at least for 5 full days',
+              8: 'Industrial/Exhibition visits',
+              9: 'Foreign Language Skill TOFEL/IELTS/BEC exams etc.'}
+    CHOICE1 = {0: 'Select', 1: 'College Events', 2: 'Zonal Events', 3: 'State/ University Events',
+               4: 'National Events', 5: 'International Events'}
+    CHOICE2 = {0: 'Select:', 1: '(a) Certificate', 2: '(b) Letter from Authorities',
+               3: '(c) Appreciation recognition letter', 4: '(d) Documentary evidence',
+               5: '(e) Legal Proof', 6: 'Others'}
+               
+
+class entr():
+    CHOICE = {0: 'Select:',
+              1: 'Start-up Company –Registered legally',
+              2: 'Patent-Filed',
+              3: 'Patent-Published',
+              4: 'Patent-Approved',
+              5: 'Patent-Licensed',
+              6: 'Prototype developed and tested',
+              7: 'Awards for Products developed',
+              8: 'Innovative technologies developed and used by industries/users',
+              9: 'Got venture capital funding for innovative ideas/products',
+              10: 'Startup Employment Offering jobs to two persons less than Rs. 15000/- per month',
+              11: 'Societal innovations'}
+    CHOICE1 = {0: 'Select:', 1: '(a) Certificate', 2: '(b) Letter from Authorities',
+               3: '(c) Appreciation recognition letter', 4: '(d) Documentary evidence',
+               5: '(e) Legal Proof', 6: 'Others'}
+               
+
+class game():
+    CHOICE = {1: 'Yes', 2: 'No'}
+    CHOICE1 = {0: 'Select:', 1: 'Sports', 2: 'Games'}
+    CHOICE2 = {0: 'Select:', 1: 'College Events', 2: 'Zonal Events', 3: 'State/ University Events',
+               4: 'National Events', 5: 'International Events'}
+    CHOICE3 = {0: 'Select:', 1: 'First', 2: 'Second', 3: 'Third'}
+    CHOICE4 = {0: 'Select:', 1: '(a) Certificate', 2: '(b) Letter from Authorities',
+               3: '(c) Appreciation recognition letter', 4: '(d) Documentary evidence',
+               5: '(e) Legal Proof', 6: 'Others'}
+
+l2 = lead()
+n2 = nat()
+c2 = cult()
+p2 = prof()
+e2 = entr()
+g2 = game()

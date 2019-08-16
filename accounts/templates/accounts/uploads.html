@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Uploads</title>
+    {% load static %}
+{% endblock %}
+{% block body %}
+    <div class="container" style="width: 85%; padding: 20px 0;">
+        {% for O in lead %}
+            {% for key, value in l2.CHOICE.items %}
+                {% if key == O.Category %}
+                    <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        <h5 style="display:inline;">{{value}}</h5>
+                        <a class="waves-effect waves-light btn"
+                           style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
+                        <a href="http://127.0.0.1:8000/account/leadership-&-management/edit" class="waves-effect waves-light btn"
+                           style="float:right; margin: 0 10px; background-color: #5cb85c; text-decoration: none;">Change</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% for O in nat %}
+            {% for key, value in n2.CHOICE1.items %}
+                {% if key == O.Category %}
+                    <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        <h5 style="display:inline;">{{value}}</h5>
+                        <a class="waves-effect waves-light btn"
+                           style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
+                        <a href="http://127.0.0.1:8000/account/national-initiatives/edit" class="waves-effect waves-light btn"
+                           style="float:right; margin: 0 10px; background-color: #5cb85c; text-decoration: none;">Change</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% for O in cult %}
+            {% for key, value in c2.CHOICE1.items %}
+                {% if key == O.Category %}
+                    <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        <h5 style="display:inline;">{{value}}</h5>
+                        <a class="waves-effect waves-light btn"
+                           style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
+                        <a href="http://127.0.0.1:8000/account/cultural-activities/edit" class="waves-effect waves-light btn"
+                           style="float:right; margin: 0 10px; background-color: #5cb85c; text-decoration: none;">Change</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% for O in prof %}
+            {% for key, value in p2.CHOICE.items %}
+                {% if key == O.Category %}
+                    <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        <h5 style="display:inline;">{{value}}</h5>
+                        <a class="waves-effect waves-light btn"
+                           style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
+                        <a href="http://127.0.0.1:8000/account/prof-self-initiatives/edit" class="waves-effect waves-light btn"
+                           style="float:right; margin: 0 10px; background-color: #5cb85c; text-decoration: none;">Change</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% for O in entr %}
+            {% for key, value in e2.CHOICE.items %}
+                {% if key == O.Category %}
+                    <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        <h5 style="display:inline;">{{value}}</h5>
+                        <a class="waves-effect waves-light btn"
+                           style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
+                        <a href="http://127.0.0.1:8000/account/entrepreneurship-&-innovation/edit" class="waves-effect waves-light btn"
+                           style="float:right; margin: 0 10px; background-color: #5cb85c; text-decoration: none;">Change</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% for O in game %}
+            {% for key, value in g2.CHOICE1.items %}
+                {% if key == O.Category %}
+                    <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        <h5 style="display:inline;">{{value}}</h5>
+                        <a class="waves-effect waves-light btn"
+                           style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
+                        <a href="http://127.0.0.1:8000/account/sports-&-games/edit" class="waves-effect waves-light btn"
+                           style="float:right; margin: 0 10px; background-color: #5cb85c; text-decoration: none;">Change</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+<!--'lead': l2.CHOICE[l1], 'nat': n2.CHOICE1[n1], 'cult': c2.CHOICE1[c1], 'prof': p2.CHOICE[p1],-->
+            <!--'entr': e2.CHOICE[e1], 'game': g2.CHOICE1[g1]-->

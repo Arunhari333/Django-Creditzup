@@ -12,7 +12,7 @@
                         <h5 style="display:inline;">{{value}}</h5>
                         <a class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
-                        <a href="http://127.0.0.1:8000/account/leadership-&-management/edit" class="waves-effect waves-light btn"
+                        <a href="{% url 'accounts:edit_leadpage' O.id%}" class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #5cb85c; text-decoration: none;">Change</a>
                     </div>
                 {% endif %}
@@ -25,7 +25,7 @@
                         <h5 style="display:inline;">{{value}}</h5>
                         <a class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
-                        <a href="http://127.0.0.1:8000/account/national-initiatives/edit" class="waves-effect waves-light btn"
+                        <a href="{% url 'accounts:edit_natpage' O.id%}" class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #5cb85c; text-decoration: none;">Change</a>
                     </div>
                 {% endif %}
@@ -38,7 +38,7 @@
                         <h5 style="display:inline;">{{value}}</h5>
                         <a class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
-                        <a href="http://127.0.0.1:8000/account/cultural-activities/edit" class="waves-effect waves-light btn"
+                        <a href="{% url 'accounts:edit_cultpage' O.id%}" class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #5cb85c; text-decoration: none;">Change</a>
                     </div>
                 {% endif %}
@@ -51,7 +51,7 @@
                         <h5 style="display:inline;">{{value}}</h5>
                         <a class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
-                        <a href="http://127.0.0.1:8000/account/prof-self-initiatives/edit" class="waves-effect waves-light btn"
+                        <a href="{% url 'accounts:edit_profpage' O.id%}" class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #5cb85c; text-decoration: none;">Change</a>
                     </div>
                 {% endif %}
@@ -64,7 +64,7 @@
                         <h5 style="display:inline;">{{value}}</h5>
                         <a class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
-                        <a href="http://127.0.0.1:8000/account/entrepreneurship-&-innovation/edit" class="waves-effect waves-light btn"
+                        <a href="{% url 'accounts:edit_entrepage' O.id%}" class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #5cb85c; text-decoration: none;">Change</a>
                     </div>
                 {% endif %}
@@ -77,7 +77,7 @@
                         <h5 style="display:inline;">{{value}}</h5>
                         <a class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
-                        <a href="http://127.0.0.1:8000/account/sports-&-games/edit" class="waves-effect waves-light btn"
+                        <a href="{% url 'accounts:edit_gamepage' O.id%}" class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #5cb85c; text-decoration: none;">Change</a>
                     </div>
                 {% endif %}

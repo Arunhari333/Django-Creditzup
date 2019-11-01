@@ -4,6 +4,8 @@ from django.contrib.auth.views import (
     login, logout, password_reset, password_reset_done, password_reset_confirm, password_reset_complete
 )
 
+app_name = 'accounts'
+
 urlpatterns = [
     path('', views.home),
     path('national-initiatives', views.national_initiatives.as_view()),
@@ -16,14 +18,14 @@ urlpatterns = [
     path('logout/', logout, {'template_name': 'accounts/logout.html'}),
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
-    # path('uploads/', views.uploads, name='uploads'),
+    path('uploads/', views.uploads, name='uploads'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
-    # path('national-initiatives/edit/', views.edit_natpage, name='edit_natpage'),
-    # path('sports-&-games/edit/', views.edit_gamepage, name='edit_gamepage'),
-    # path('cultural-activities/edit/', views.edit_cultpage, name='edit_cultpage'),
-    # path('prof-self-initiatives/edit/', views.edit_profpage, name='edit_profpage'),
-    # path('entrepreneurship-&-innovation/edit/', views.edit_entrepage, name='edit_entrepage'),
-    # path('leadership-&-management/edit/', views.edit_leadpage, name='edit_leadpage'),
+    path('national-initiatives/edit/<int:id>/', views.edit_natpage, name='edit_natpage'),
+    path('sports-&-games/edit/<int:id>/', views.edit_gamepage, name='edit_gamepage'),
+    path('cultural-activities/edit/<int:id>/', views.edit_cultpage, name='edit_cultpage'),
+    path('prof-self-initiatives/edit/<int:id>/', views.edit_profpage, name='edit_profpage'),
+    path('entrepreneurship-&-innovation/edit/<int:id>/', views.edit_entrepage, name='edit_entrepage'),
+    path('leadership-&-management/edit/<int:id>/', views.edit_leadpage, name='edit_leadpage'),
     path('change-password', views.change_password, name='change_password'),
     path('reset-password', password_reset, {'template_name': 'accounts/reset_password.html'}, name='password_reset'),
     path('reset-password/done', password_reset_done,

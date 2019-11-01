@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from accounts.forms import RegistrationForm, RegistrationForm2, EditprofileForm, \
     LeadForm, Cultform, Profform, Entreform, Gameform, NatForm
 from django.contrib.auth.forms import PasswordChangeForm
@@ -11,7 +11,6 @@ from accounts.database import *
 
 @login_required
 def home(request):
-    print(n[13])
     return render(request, 'accounts/home.html')
 
 class national_initiatives(LoginRequiredMixin, TemplateView):
@@ -35,10 +34,9 @@ class national_initiatives(LoginRequiredMixin, TemplateView):
             DocType = form.cleaned_data['DocType']
             form = NatForm()
 
-            if(int(TwoYears) * 1 == 1):
+            if int(TwoYears) * 1 == 1:
                 U = UserProfile.objects.get(user=request.user)
                 x = 10 * int(Category) + int(SubCategory)
-                print(x)
                 U.TotalCredits += n[x]
                 U.save()
 
@@ -68,22 +66,21 @@ class sports_games(LoginRequiredMixin, TemplateView):
             form = Gameform()
 
             h = 0
-            if int(Category) == 2:
-                if int(Position) == 1:
-                    if int(Level) in [1, 2, 3]:
-                        h += 10
-                    elif int(Level) in [4, 5]:
-                        h += 20
-                elif int(Position) == 2:
-                    if int(Level) in [1, 2, 3]:
-                        h += 8
-                    elif int(Level) in [4, 5]:
-                        h += 16
-                elif int(Position) == 3:
-                    if int(Level) in [1, 2, 3]:
-                        h += 5
-                    elif int(Level) in [4, 5]:
-                        h += 12
+            if int(Position) == 1:
+                if int(Level) in [1, 2, 3]:
+                    h += 10
+                elif int(Level) in [4, 5]:
+                    h += 20
+            elif int(Position) == 2:
+                if int(Level) in [1, 2, 3]:
+                    h += 8
+                elif int(Level) in [4, 5]:
+                    h += 16
+            elif int(Position) == 3:
+                if int(Level) in [1, 2, 3]:
+                    h += 5
+                elif int(Level) in [4, 5]:
+                    h += 12
 
             if int(OneYear) * 1 == 1:
                 U = UserProfile.objects.get(user=request.user)
@@ -265,6 +262,16 @@ class RegView(TemplateView):
             args = {'form': form, 'FirstName': FirstName, 'LastName': LastName, 'Class': Class, 'Semester': Semester}
             return render(request, self.template_name, args)
 
+    # def put(self, request, id=None):
+    #     userprofile = get_object_or_404(UserProfile, id=id)
+    #     form = RegistrationForm2(request.POST, instance=userprofile)
+    #     if form.is_valid():
+    #         instance = form.save(commit=False)
+    #         instance.user = request.user
+    #         instance.save()
+    #
+    #         return redirect('/account/profile/')
+
 O = RegView()
 
 @login_required
@@ -273,7 +280,7 @@ def profile(request):
     if request.user.is_authenticated:
         if UserProfile.objects.filter(user=request.user).exists():
             details = UserProfile.objects.get(user=request.user)
-            args = {'data': details}
+            args = {'data': details, 'id': request.user.id}
             return render(request, 'accounts/profile.html', args)
         else:
             if request.method == 'POST':
@@ -286,17 +293,271 @@ def profile(request):
 
 @login_required
 def edit_profile(request):
+    userprofile1 = UserProfile.objects.get(user_id=request.user.id)
+    userprofile = get_object_or_404(UserProfile, id=userprofile1.id)
     if request.method == 'POST':
-        form = EditprofileForm(request.POST, instance=request.user)
-
+        form = RegistrationForm2(request.POST, instance=userprofile)
         if form.is_valid():
-            form.save()
-            return redirect('/account/profile')
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
 
+            return redirect('/account/profile/')
     else:
-        form = EditprofileForm(instance=request.user)
+        form = RegistrationForm2(instance=userprofile)
         args = {'form': form}
         return render(request, 'accounts/edit_profile.html', args)
+
+@login_required
+def edit_natpage(request, id):
+    natpage = get_object_or_404(NatPage, id=id)
+    U = UserProfile.objects.get(user=request.user)
+    y = 10 * int(natpage.Category) + int(natpage.SubCategory)
+    if int(natpage.TwoYears) * 1 == 1:
+        U.TotalCredits -= n[y]
+
+    if request.method == 'POST':
+        form = NatForm(request.POST, instance=natpage)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+
+            TwoYears = form.cleaned_data['TwoYears']
+            Category = form.cleaned_data['Category']
+            SubCategory = form.cleaned_data['SubCategory']
+
+            if int(TwoYears) * 1 == 1:
+                x = 10 * int(Category) + int(SubCategory)
+                U.TotalCredits += n[x]
+                U.save()
+
+            return redirect('/account/uploads/')
+    else:
+        form = NatForm(instance=natpage)
+        args = {'form': form}
+        return render(request, 'accounts/edit_natpage.html', args)
+
+@login_required
+def edit_gamepage(request, id):
+    gamepage = get_object_or_404(GamePage, id=id)
+    U = UserProfile.objects.get(user=request.user)
+    y = 10 * int(gamepage.Category) + int(gamepage.Level)
+
+    h1 = 0
+    if int(gamepage.Position) == 1:
+        if int(gamepage.Level) in [1, 2, 3]:
+            h1 += 10
+        elif int(gamepage.Level) in [4, 5]:
+            h1 += 20
+    elif int(gamepage.Position) == 2:
+        if int(gamepage.Level) in [1, 2, 3]:
+            h1 += 8
+        elif int(gamepage.Level) in [4, 5]:
+            h1 += 16
+    elif int(gamepage.Position) == 3:
+        if int(gamepage.Level) in [1, 2, 3]:
+            h1 += 5
+        elif int(gamepage.Level) in [4, 5]:
+            h1 += 12
+
+    if int(gamepage.OneYear) * 1 == 1:
+        U.TotalCredits -= (s[y] + h1)
+
+    if request.method == 'POST':
+        form = Gameform(request.POST, instance=gamepage)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+
+            OneYear = form.cleaned_data['OneYear']
+            Category = form.cleaned_data['Category']
+            Level = form.cleaned_data['Level']
+            Position = form.cleaned_data['Position']
+
+            h = 0
+            if int(Position) == 1:
+                if int(Level) in [1, 2, 3]:
+                    h += 10
+                elif int(Level) in [4, 5]:
+                    h += 20
+            elif int(Position) == 2:
+                if int(Level) in [1, 2, 3]:
+                    h += 8
+                elif int(Level) in [4, 5]:
+                    h += 16
+            elif int(Position) == 3:
+                if int(Level) in [1, 2, 3]:
+                    h += 5
+                elif int(Level) in [4, 5]:
+                    h += 12
+
+            if int(OneYear) * 1 == 1:
+                x = 10 * int(Category) + int(Level)
+                U.TotalCredits += (s[x] + h)
+                print(s[x] + h)
+                print(U.TotalCredits)
+                U.save()
+
+            return redirect('/account/uploads/')
+    else:
+        form = Gameform(instance=gamepage)
+        args = {'form': form}
+        return render(request, 'accounts/edit_gamepage.html', args)
+
+@login_required
+def edit_cultpage(request, id):
+    cultpage = get_object_or_404(CultPage, id=id)
+    U = UserProfile.objects.get(user=request.user)
+    y = 10 * int(cultpage.Category) + int(cultpage.Level)
+
+    h1 = 0
+    if int(cultpage.Position) == 1:
+        if int(cultpage.Level) in [1, 2, 3]:
+            h1 += 10
+        elif int(cultpage.Level) in [4, 5]:
+            h1 += 20
+    elif int(cultpage.Position) == 2:
+        if int(cultpage.Level) in [1, 2, 3]:
+            h1 += 8
+        elif int(cultpage.Level) in [4, 5]:
+            h1 += 16
+    elif int(cultpage.Position) == 3:
+        if int(cultpage.Level) in [1, 2, 3]:
+            h1 += 5
+        elif int(cultpage.Level) in [4, 5]:
+            h1 += 12
+
+    if int(cultpage.OneYear) * 1 == 1:
+        U.TotalCredits -= (c[y] + h1)
+
+    if request.method == 'POST':
+        form = Cultform(request.POST, instance=cultpage)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+
+            OneYear = form.cleaned_data['OneYear']
+            Category = form.cleaned_data['Category']
+            Level = form.cleaned_data['Level']
+            Position = form.cleaned_data['Position']
+
+            h = 0
+            if int(Position) == 1:
+                if int(Level) in [1, 2, 3]:
+                    h += 10
+                elif int(Level) in [4, 5]:
+                    h += 20
+            elif int(Position) == 2:
+                if int(Level) in [1, 2, 3]:
+                    h += 8
+                elif int(Level) in [4, 5]:
+                    h += 16
+            elif int(Position) == 3:
+                if int(Level) in [1, 2, 3]:
+                    h += 5
+                elif int(Level) in [4, 5]:
+                    h += 12
+
+            if int(OneYear) * 1 == 1:
+                x = 10 * int(Category) + int(Level)
+                U.TotalCredits += (c[x] + h)
+                U.save()
+
+            return redirect('/account/uploads/')
+    else:
+        form = Cultform(instance=cultpage)
+        args = {'form': form}
+        return render(request, 'accounts/edit_cultpage.html', args)
+
+@login_required
+def edit_profpage(request, id):
+    profpage = get_object_or_404(ProfPage, id=id)
+    U = UserProfile.objects.get(user=request.user)
+    if int(profpage.Category) == 1 or int(profpage.Category) == 3:
+        y = 10 * int(profpage.Category) + int(profpage.Level)
+    elif profpage.Category != 0:
+        y = 10 * int(profpage.Category)
+
+    if request.method == 'POST':
+        form = Profform(request.POST, instance=profpage)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+
+            Category = form.cleaned_data['Category']
+            Level = form.cleaned_data['Level']
+
+            U.TotalCredits -= p[y]
+            if int(Category) == 1 or int(Category) == 3:
+                x = 10 * int(Category) + int(Level)
+            elif Category != 0:
+                x = 10 * int(Category)
+            U.TotalCredits += p[x]
+            U.save()
+
+            return redirect('/account/uploads/')
+    else:
+        form = Profform(instance=profpage)
+        args = {'form': form}
+        return render(request, 'accounts/edit_profpage.html', args)
+
+@login_required
+def edit_entrepage(request, id):
+    entrepage = get_object_or_404(EntrePage, id=id)
+    U = UserProfile.objects.get(user=request.user)
+    y = int(entrepage.Category)
+    print(y)
+
+    if request.method == 'POST':
+        form = Entreform(request.POST, instance=entrepage)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+
+            Category = form.cleaned_data['Category']
+
+            U.TotalCredits -= e[y]
+            x = int(Category)
+            U.TotalCredits += e[x]
+            U.save()
+
+            return redirect('/account/uploads/')
+    else:
+        form = Entreform(instance=entrepage)
+        args = {'form': form}
+        return render(request, 'accounts/edit_entrepage.html', args)
+
+@login_required
+def edit_leadpage(request, id):
+    leadpage = get_object_or_404(LeadPage, id=id)
+    U = UserProfile.objects.get(user=request.user)
+    y = 10 * int(leadpage.Category) + int(leadpage.SubCategory)
+
+    if request.method == 'POST':
+        form = LeadForm(request.POST, instance=leadpage)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+
+            Category = form.cleaned_data['Category']
+            SubCategory = form.cleaned_data['SubCategory']
+
+            U.TotalCredits -= l[y]
+            x = 10 * int(Category) + int(SubCategory)
+            U.TotalCredits += l[x]
+            U.save()
+
+            return redirect('/account/uploads/')
+    else:
+        form = LeadForm(instance=leadpage)
+        args = {'form': form}
+        return render(request, 'accounts/edit_leadpage.html', args)
 
 @login_required
 def uploads(request):

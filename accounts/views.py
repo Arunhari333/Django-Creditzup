@@ -510,7 +510,6 @@ def edit_entrepage(request, id):
     entrepage = get_object_or_404(EntrePage, id=id)
     U = UserProfile.objects.get(user=request.user)
     y = int(entrepage.Category)
-    print(y)
 
     if request.method == 'POST':
         form = Entreform(request.POST, instance=entrepage)
@@ -558,6 +557,114 @@ def edit_leadpage(request, id):
         form = LeadForm(instance=leadpage)
         args = {'form': form}
         return render(request, 'accounts/edit_leadpage.html', args)
+
+def delete_natpage(request, id):
+    natpage = get_object_or_404(NatPage, id=id)
+    U = UserProfile.objects.get(user=request.user)
+    y = 10 * int(natpage.Category) + int(natpage.SubCategory)
+    if int(natpage.TwoYears) * 1 == 1:
+        U.TotalCredits -= n[y]
+        U.save()
+
+    natpage.delete()
+
+    return redirect('/account/uploads/')
+
+def delete_gamepage(request, id):
+    gamepage = get_object_or_404(GamePage, id=id)
+    U = UserProfile.objects.get(user=request.user)
+    y = 10 * int(gamepage.Category) + int(gamepage.Level)
+
+    h1 = 0
+    if int(gamepage.Position) == 1:
+        if int(gamepage.Level) in [1, 2, 3]:
+            h1 += 10
+        elif int(gamepage.Level) in [4, 5]:
+            h1 += 20
+    elif int(gamepage.Position) == 2:
+        if int(gamepage.Level) in [1, 2, 3]:
+            h1 += 8
+        elif int(gamepage.Level) in [4, 5]:
+            h1 += 16
+    elif int(gamepage.Position) == 3:
+        if int(gamepage.Level) in [1, 2, 3]:
+            h1 += 5
+        elif int(gamepage.Level) in [4, 5]:
+            h1 += 12
+
+    if int(gamepage.OneYear) * 1 == 1:
+        U.TotalCredits -= (s[y] + h1)
+        U.save()
+
+    gamepage.delete()
+
+    return redirect('/account/uploads/')
+
+def delete_cultpage(request, id):
+    cultpage = get_object_or_404(CultPage, id=id)
+    U = UserProfile.objects.get(user=request.user)
+    y = 10 * int(cultpage.Category) + int(cultpage.Level)
+
+    h1 = 0
+    if int(cultpage.Position) == 1:
+        if int(cultpage.Level) in [1, 2, 3]:
+            h1 += 10
+        elif int(cultpage.Level) in [4, 5]:
+            h1 += 20
+    elif int(cultpage.Position) == 2:
+        if int(cultpage.Level) in [1, 2, 3]:
+            h1 += 8
+        elif int(cultpage.Level) in [4, 5]:
+            h1 += 16
+    elif int(cultpage.Position) == 3:
+        if int(cultpage.Level) in [1, 2, 3]:
+            h1 += 5
+        elif int(cultpage.Level) in [4, 5]:
+            h1 += 12
+
+    if int(cultpage.OneYear) * 1 == 1:
+        U.TotalCredits -= (c[y] + h1)
+        U.save()
+
+    cultpage.delete()
+
+    return redirect('/account/uploads/')
+
+def delete_profpage(request, id):
+    profpage = get_object_or_404(ProfPage, id=id)
+    U = UserProfile.objects.get(user=request.user)
+    if int(profpage.Category) == 1 or int(profpage.Category) == 3:
+        y = 10 * int(profpage.Category) + int(profpage.Level)
+    elif profpage.Category != 0:
+        y = 10 * int(profpage.Category)
+    U.TotalCredits -= p[y]
+    U.save()
+
+    profpage.delete()
+
+    return redirect('/account/uploads/')
+
+def delete_entrepage(request, id):
+    entrepage = get_object_or_404(EntrePage, id=id)
+    U = UserProfile.objects.get(user=request.user)
+    y = int(entrepage.Category)
+    U.TotalCredits -= e[y]
+    U.save()
+
+    entrepage.delete()
+
+    return redirect('/account/uploads/')
+
+def delete_leadpage(request, id):
+    leadpage = get_object_or_404(LeadPage, id=id)
+    U = UserProfile.objects.get(user=request.user)
+    y = 10 * int(leadpage.Category) + int(leadpage.SubCategory)
+    U.TotalCredits -= l[y]
+    U.save()
+
+    leadpage.delete()
+
+    return redirect('/account/uploads/')
 
 @login_required
 def uploads(request):

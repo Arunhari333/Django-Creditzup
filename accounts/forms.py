@@ -52,15 +52,10 @@ class LeadForm(forms.ModelForm):
                (3, '(c) Appreciation recognition letter'), (4, '(d)Documentary evidence'),
                (5, '(e) Legal Proof'), (6, 'Others'))
 
-    Category = forms.IntegerField(widget=forms.Select(choices=CHOICE))
-    SubCategory = forms.IntegerField(widget=forms.Select(choices=CHOICE1))
-    DocType = forms.IntegerField(widget=forms.Select(choices=CHOICE2))
-    File = forms.FileField(required=True)
-    Approved = forms.BooleanField(widget=forms.HiddenInput())
-
     class Meta:
         model = LeadPage
         fields = ('Category', 'SubCategory', 'DocType', 'File', 'Approved')
+        widgets = {'Approved': forms.HiddenInput()}
 
 class Cultform(forms.ModelForm):
     CHOICE = ((1, 'Yes'), (2, 'No'))
@@ -73,17 +68,10 @@ class Cultform(forms.ModelForm):
                (5, '(e) Legal Proof'), (6, 'Others')
                )
 
-    OneYear = forms.CharField(widget=forms.RadioSelect(choices=CHOICE))
-    Category = forms.CharField(widget=forms.Select(choices=CHOICE1))
-    Level = forms.CharField(widget=forms.Select(choices=CHOICE2))
-    Position = forms.CharField(widget=forms.Select(choices=CHOICE3))
-    DocType = forms.CharField(widget=forms.Select(choices=CHOICE4))
-    File = forms.FileField(required=True)
-    Approved = forms.BooleanField(widget=forms.HiddenInput())
-
     class Meta:
         model = CultPage
         fields = ('OneYear', 'Category', 'Level', 'Position', 'DocType', 'File', 'Approved')
+        widgets = {'Approved': forms.HiddenInput()}
 
 class Profform(forms.ModelForm):
     CHOICE = ((0, 'Select:'),
@@ -103,15 +91,10 @@ class Profform(forms.ModelForm):
                (5, '(e) Legal Proof'), (6, 'Others')
                )
 
-    Category = forms.CharField(widget=forms.Select(choices=CHOICE))
-    Level = forms.CharField(widget=forms.Select(choices=CHOICE1))
-    DocType = forms.CharField(widget=forms.Select(choices=CHOICE2))
-    File = forms.FileField(required=True)
-    Approved = forms.BooleanField(widget=forms.HiddenInput())
-
     class Meta:
         model = ProfPage
         fields = ('Category', 'Level', 'DocType', 'File', 'Approved')
+        widgets = {'Approved': forms.HiddenInput()}
 
 class Entreform(forms.ModelForm):
     CHOICE = ((0, 'Select:'),
@@ -131,14 +114,10 @@ class Entreform(forms.ModelForm):
                (3, '(c) Appreciation recognition letter'), (4, '(d)Documentary evidence'),
                (5, '(e) Legal Proof'), (6, 'Others'))
 
-    Category = forms.CharField(widget=forms.Select(choices=CHOICE))
-    DocType = forms.CharField(widget=forms.Select(choices=CHOICE1))
-    File = forms.FileField(required=True)
-    Approved = forms.BooleanField(widget=forms.HiddenInput())
-
     class Meta:
         model = EntrePage
         fields = ('Category', 'DocType', 'File', 'Approved')
+        widgets = {'Approved': forms.HiddenInput()}
 
 class Gameform(forms.ModelForm):
     CHOICE = ((1, 'Yes'), (2, 'No'))
@@ -151,17 +130,10 @@ class Gameform(forms.ModelForm):
                (5, '(e) Legal Proof'), (6, 'Others')
                )
 
-    OneYear = forms.CharField(widget=forms.RadioSelect(choices=CHOICE))
-    Category = forms.CharField(widget=forms.Select(choices=CHOICE1))
-    Level = forms.CharField(widget=forms.Select(choices=CHOICE2))
-    Position = forms.CharField(widget=forms.Select(choices=CHOICE3))
-    DocType = forms.CharField(widget=forms.Select(choices=CHOICE4))
-    File = forms.FileField(required=True)
-    Approved = forms.BooleanField(widget=forms.HiddenInput())
-
     class Meta:
         model = GamePage
         fields = ('OneYear', 'Category', 'Level', 'Position', 'DocType', 'File', 'Approved')
+        widgets = {'Approved': forms.HiddenInput()}
 
 class NatForm(forms.ModelForm):
     CHOICE = ((1, 'Yes'), (2, 'No'))
@@ -179,13 +151,7 @@ class NatForm(forms.ModelForm):
                (3, '(c) Appreciation recognition letter'), (4, '(d)Documentary evidence'),
                (5, '(e) Legal Proof'), (6, 'Others'))
 
-    TwoYears = forms.CharField(widget=forms.RadioSelect(choices=CHOICE))
-    Category = forms.CharField(widget=forms.Select(choices=CHOICE1))
-    SubCategory = forms.CharField(widget=forms.Select(choices=CHOICE2))
-    DocType = forms.CharField(widget=forms.Select(choices=CHOICE3))
-    File = forms.FileField(required=True)
-    Approved = forms.BooleanField(widget=forms.HiddenInput())
-
     class Meta:
         model = NatPage
         fields = ('TwoYears', 'Category', 'SubCategory', 'DocType', 'File', 'Approved')
+        widgets = {'Approved': forms.HiddenInput()}

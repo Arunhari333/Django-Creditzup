@@ -5,11 +5,11 @@ from django.db.models.signals import post_save
 # Create your models here.
 class UserProfile(models.Model):
     user = models.OneToOneField(
-    User,
-    models.SET_NULL,
-    blank=True,
-    null=True,
-)
+        User,
+        models.SET_NULL,
+        blank=True,
+        null=True,
+    )
     FirstName = models.CharField(max_length=100, default='')
     LastName = models.CharField(max_length=100, default='')
     Class = models.CharField(max_length=100, default='')

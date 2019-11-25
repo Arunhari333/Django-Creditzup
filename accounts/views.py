@@ -40,6 +40,10 @@ class national_initiatives(LoginRequiredMixin, TemplateView):
                 U.TotalCredits += n[x]
                 U.save()
 
+            # id = request.user.id
+            # user = get_object_or_404(UserProfile, user2_id=id)
+            # UserProfile.add_link(user, instance)
+
             return redirect('/account')
 
 class sports_games(LoginRequiredMixin, TemplateView):
@@ -88,6 +92,10 @@ class sports_games(LoginRequiredMixin, TemplateView):
                 U.TotalCredits += (s[x] + h)
                 U.save()
 
+            # id = request.user.id
+            # user = get_object_or_404(UserProfile, user2_id=id)
+            # UserProfile.add_link(user, instance)
+
             return redirect('/account')
 
 class cultural_activities(LoginRequiredMixin, TemplateView):
@@ -135,6 +143,10 @@ class cultural_activities(LoginRequiredMixin, TemplateView):
                 U.TotalCredits += (c[x] + h)
                 U.save()
 
+            # id = request.user.id
+            # user = get_object_or_404(UserProfile, user2_id=id)
+            # UserProfile.add_link(user, instance)
+
             return redirect('/account')
 
 class prof_self_initiatives(LoginRequiredMixin, TemplateView):
@@ -165,6 +177,10 @@ class prof_self_initiatives(LoginRequiredMixin, TemplateView):
             U.TotalCredits += p[x]
             U.save()
 
+            # id = request.user.id
+            # user = get_object_or_404(UserProfile, user2_id=id)
+            # UserProfile.add_link(user, instance)
+
             return redirect('/account')
 
 class Entrepreneurship_innovation(LoginRequiredMixin, TemplateView):
@@ -175,7 +191,6 @@ class Entrepreneurship_innovation(LoginRequiredMixin, TemplateView):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
-
         form = Entreform(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
@@ -191,6 +206,10 @@ class Entrepreneurship_innovation(LoginRequiredMixin, TemplateView):
             U.TotalCredits += e[x]
             U.save()
 
+            # id = request.user.id
+            # user = get_object_or_404(UserProfile, user2_id=id)
+            # UserProfile.add_link(user, instance)
+
             return redirect('/account')
 
 class Leadership_management(LoginRequiredMixin, TemplateView):
@@ -202,6 +221,7 @@ class Leadership_management(LoginRequiredMixin, TemplateView):
 
     def post(self, request):
 
+        print(request.POST)
         form = LeadForm(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
@@ -217,6 +237,10 @@ class Leadership_management(LoginRequiredMixin, TemplateView):
             x = 10 * int(Category) + int(SubCategory)
             U.TotalCredits += l[x]
             U.save()
+
+            # id = request.user.id
+            # user = get_object_or_404(UserProfile, user2_id=id)
+            # UserProfile.add_link(user, instance)
 
             return redirect('/account')
 

@@ -45,6 +45,7 @@ class LeadPage(models.Model):
     SubCategory = models.IntegerField(choices=CHOICE1, default=0)
     DocType = models.IntegerField(choices=CHOICE2, default=0)
     File = models.FileField(null=True, blank=True)
+    Approved = models.BooleanField(default=False)
 
     def __str__(self):
         return '%s' % (self.user1)
@@ -67,6 +68,7 @@ class CultPage(models.Model):
     Position = models.IntegerField(choices=CHOICE3, default=0)
     DocType = models.IntegerField(choices=CHOICE4, default=0)
     File = models.FileField(null=True, blank=True)
+    Approved = models.BooleanField(default=False)
 
     def __str__(self):
         return '%s' % (self.user3)
@@ -94,6 +96,7 @@ class ProfPage(models.Model):
     Level = models.IntegerField(choices=CHOICE1, default=0)
     DocType = models.IntegerField(choices=CHOICE2, default=0)
     File = models.FileField(null=True, blank=True)
+    Approved = models.BooleanField(default=False)
 
     def __str__(self):
         return '%s' % (self.user4)
@@ -120,6 +123,7 @@ class EntrePage(models.Model):
     Category = models.IntegerField(choices=CHOICE, default=0)
     DocType = models.IntegerField(choices=CHOICE1, default=0)
     File = models.FileField(null=True, blank=True)
+    Approved = models.BooleanField(default=False)
 
     def __str__(self):
         return '%s' % (self.user5)
@@ -142,6 +146,7 @@ class GamePage(models.Model):
     Position = models.IntegerField(choices=CHOICE3, default=0)
     DocType = models.IntegerField(choices=CHOICE4, default=0)
     File = models.FileField(null=True, blank=True)
+    Approved = models.BooleanField(default=False)
 
     def __str__(self):
         return '%s' % (self.user6)
@@ -168,6 +173,7 @@ class NatPage(models.Model):
     SubCategory = models.IntegerField(choices=CHOICE2, default=0)
     DocType = models.IntegerField(choices=CHOICE3, default=0)
     File = models.FileField(null=True, blank=True)
+    Approved = models.BooleanField(default=False)
 
     def __str__(self):
         return '%s' % (self.user2)

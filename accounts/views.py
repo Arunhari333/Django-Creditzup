@@ -668,12 +668,13 @@ def delete_leadpage(request, id):
 
 @login_required
 def uploads(request):
-    l1 = LeadPage.objects.filter(user1=request.user)
-    n1 = NatPage.objects.filter(user2=request.user)
-    c1 = CultPage.objects.filter(user3=request.user)
-    p1 = ProfPage.objects.filter(user4=request.user)
-    e1 = EntrePage.objects.filter(user5=request.user)
-    g1 = GamePage.objects.filter(user6=request.user)
+    user = request.user
+    l1 = LeadPage.objects.filter(user1=user)
+    n1 = NatPage.objects.filter(user2=user)
+    c1 = CultPage.objects.filter(user3=user)
+    p1 = ProfPage.objects.filter(user4=user)
+    e1 = EntrePage.objects.filter(user5=user)
+    g1 = GamePage.objects.filter(user6=user)
     args = {'lead': l1, 'nat': n1, 'cult': c1, 'prof': p1, 'entr': e1, 'game': g1,
             'l2': l2, 'n2': n2, 'c2': c2, 'p2': p2, 'e2': e2, 'g2': g2}
     return render(request, 'accounts/uploads.html', args)

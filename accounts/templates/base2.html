@@ -15,12 +15,13 @@
             <a href="/account/">Home</a>
             <a href="/account/uploads/">Uploads</a>
             <a href="/account/change-password">Change Password</a>
-            <a href="/account/logout">Logout</a>
+            <a href="/account/logout" class="right">Logout</a>
         </div>
       {% else %}
             <div class="topnav">
                 <a href="/account/login">Login</a>
                 <a href="/account/register">Register</a>
+                <a href="/admin/login" class="right">Admin-Login</a>
             </div>
       {% endif %}
     {% block body %}

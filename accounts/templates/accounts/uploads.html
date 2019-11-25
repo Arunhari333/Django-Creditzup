@@ -9,6 +9,9 @@
             {% for key, value in l2.CHOICE.items %}
                 {% if key == O.Category %}
                     <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        {% if O.Approved == True %}
+                            <i class="small material-icons">assignment_turned_in</i>
+                        {% endif %}
                         <h5 style="display:inline;">{{value}}</h5>
                         <a href="{% url 'accounts:delete_leadpage' O.id %}" class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
@@ -22,6 +25,9 @@
             {% for key, value in n2.CHOICE1.items %}
                 {% if key == O.Category %}
                     <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        {% if O.Approved == True %}
+                            <i class="small material-icons">assignment_turned_in</i>
+                        {% endif %}
                         <h5 style="display:inline;">{{value}}</h5>
                         <a href="{% url 'accounts:delete_natpage' O.id %}" class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
@@ -35,6 +41,9 @@
             {% for key, value in c2.CHOICE1.items %}
                 {% if key == O.Category %}
                     <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        {% if O.Approved == True %}
+                            <i class="small material-icons">assignment_turned_in</i>
+                        {% endif %}
                         <h5 style="display:inline;">{{value}}</h5>
                         <a href="{% url 'accounts:delete_cultpage' O.id %}" class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
@@ -48,6 +57,9 @@
             {% for key, value in p2.CHOICE.items %}
                 {% if key == O.Category %}
                     <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        {% if O.Approved == True %}
+                            <i class="small material-icons">assignment_turned_in</i>
+                        {% endif %}
                         <h5 style="display:inline;">{{value}}</h5>
                         <a href="{% url 'accounts:delete_profpage' O.id %}" class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
@@ -61,6 +73,9 @@
             {% for key, value in e2.CHOICE.items %}
                 {% if key == O.Category %}
                     <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        {% if O.Approved == True %}
+                            <i class="small material-icons">assignment_turned_in</i>
+                        {% endif %}
                         <h5 style="display:inline;">{{value}}</h5>
                         <a href="{% url 'accounts:delete_entrepage' O.id %}" class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>
@@ -74,6 +89,9 @@
             {% for key, value in g2.CHOICE1.items %}
                 {% if key == O.Category %}
                     <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        {% if O.Approved == True %}
+                            <i class="small material-icons">assignment_turned_in</i>
+                        {% endif %}
                         <h5 style="display:inline;">{{value}}</h5>
                         <a href="{% url 'accounts:delete_gamepage' O.id %}" class="waves-effect waves-light btn"
                            style="float:right; margin: 0 10px; background-color: #d9534f; text-decoration: none;">Delete</a>

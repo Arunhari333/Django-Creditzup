@@ -17,13 +17,14 @@
             <a href="/account/" class="bttn active">Home</a>
             <a href="/account/uploads/" class="bttn">Uploads</a>
             <a href="/account/change-password" class="bttn">Change Password</a>
-            <a href="/account/logout" class="bttn">Logout</a>
+            <a href="/account/logout" class="bttn right">Logout</a>
         </div>
       {% else %}
             <h1 align="center" class="h1"><em>CreditZup</em></h1>
             <div class="topnav">
                 <a href="/account/login">Login</a>
                 <a href="/account/register">Register</a>
+                <a href="/admin/login" class="right">Admin-Login</a>
             </div>
       {% endif %}
     {% block body %}

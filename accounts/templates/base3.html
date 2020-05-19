@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    {% load static %}
+      <link  rel="stylesheet" href="{% static 'accounts/css/stylesheet.css' %}" type="text/css">
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+        <h1 align="center" class="h1"><em>CreditZup Admin</em></h1>
+        <div class="topnav">
+            <a href="/account/admin/search" class="bttn">Search</a>
+            <a href="/account/admin/home" class="bttn active">Home</a>
+            <a href="/account/logout" class="bttn right">Logout</a>
+        </div>
+    {% block body %}
+    {% endblock %}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  </body>
+</html>

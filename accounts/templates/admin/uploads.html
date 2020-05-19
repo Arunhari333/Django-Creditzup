@@ -1,0 +1,81 @@
+{% extends 'base3.html' %}
+{% block head %}
+    <title>Student Details</title>
+    {% load static %}
+{% endblock %}
+{% block body %}
+    <div class="container" style="width: 85%; padding: 20px 0;">
+        {% for O in lead %}
+            {% for key, value in l2.CHOICE.items %}
+                {% if key == O.Category %}
+                    <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        {% if O.Approved == True %}
+                            <i class="small material-icons">assignment_turned_in</i>
+                        {% endif %}
+                        <h5 style="display:inline;">{{value}}</h5>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% for O in nat %}
+            {% for key, value in n2.CHOICE1.items %}
+                {% if key == O.Category %}
+                    <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        {% if O.Approved == True %}
+                            <i class="small material-icons">assignment_turned_in</i>
+                        {% endif %}
+                        <h5 style="display:inline;">{{value}}</h5>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% for O in cult %}
+            {% for key, value in c2.CHOICE1.items %}
+                {% if key == O.Category %}
+                    <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        {% if O.Approved == True %}
+                            <i class="small material-icons">assignment_turned_in</i>
+                        {% endif %}
+                        <h5 style="display:inline;">{{value}}</h5>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% for O in prof %}
+            {% for key, value in p2.CHOICE.items %}
+                {% if key == O.Category %}
+                    <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        {% if O.Approved == True %}
+                            <i class="small material-icons">assignment_turned_in</i>
+                        {% endif %}
+                        <h5 style="display:inline;">{{value}}</h5>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% for O in entr %}
+            {% for key, value in e2.CHOICE.items %}
+                {% if key == O.Category %}
+                    <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        {% if O.Approved == True %}
+                            <i class="small material-icons">assignment_turned_in</i>
+                        {% endif %}
+                        <h5 style="display:inline;">{{value}}</h5>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% for O in game %}
+            {% for key, value in g2.CHOICE1.items %}
+                {% if key == O.Category %}
+                    <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
+                        {% if O.Approved == True %}
+                            <i class="small material-icons">assignment_turned_in</i>
+                        {% endif %}
+                        <h5 style="display:inline;">{{value}}</h5>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endblock %}

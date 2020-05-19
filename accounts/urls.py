@@ -19,6 +19,12 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
     path('uploads/', views.uploads, name='uploads'),
+    path('national-initiatives/view/<int:id>/', views.view_natpage, name='view_natpage'),
+    path('sports-&-games/view/<int:id>/', views.view_gamepage, name='view_gamepage'),
+    path('cultural-activities/view/<int:id>/', views.view_cultpage, name='view_cultpage'),
+    path('prof-self-initiatives/view/<int:id>/', views.view_profpage, name='view_profpage'),
+    path('entrepreneurship-&-innovation/view/<int:id>/', views.view_entrepage, name='view_entrepage'),
+    path('leadership-&-management/view/<int:id>/', views.view_leadpage, name='view_leadpage'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
     path('national-initiatives/edit/<int:id>/', views.edit_natpage, name='edit_natpage'),
     path('sports-&-games/edit/<int:id>/', views.edit_gamepage, name='edit_gamepage'),
@@ -40,4 +46,7 @@ urlpatterns = [
          password_reset_confirm, {'template_name': 'accounts/password_reset_confirm.html'}, name='password_reset_confirm'),
     path('accounts/reset-password/complete/', password_reset_complete,
          {'template_name': 'accounts/password_reset_complete.html'}, name='password_reset_complete'),
+    path('admin/home/', views.admin_home, name='admin_home'),
+    path('admin/student-details/<int:id>/', views.admin_uploads, name='admin_uploads'),
+    path('admin/search/', views.admin_search, name='admin_search')
 ]

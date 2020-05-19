@@ -369,7 +369,7 @@ def edit_natpage(request, id):
             U.TotalCredits -= n[y]
 
         if request.method == 'POST':
-            form = NatForm(request.POST, instance=natpage)
+            form = NatForm(request.POST, request.FILES, instance=natpage)
             if form.is_valid():
                 instance = form.save(commit=False)
                 instance.user = request.user
@@ -420,7 +420,7 @@ def edit_gamepage(request, id):
             U.TotalCredits -= (s[y] + h1)
 
         if request.method == 'POST':
-            form = Gameform(request.POST, instance=gamepage)
+            form = Gameform(request.POST, request.FILES, instance=gamepage)
             if form.is_valid():
                 instance = form.save(commit=False)
                 instance.user = request.user
@@ -491,7 +491,7 @@ def edit_cultpage(request, id):
             U.TotalCredits -= (c[y] + h1)
 
         if request.method == 'POST':
-            form = Cultform(request.POST, instance=cultpage)
+            form = Cultform(request.POST, request.FILES, instance=cultpage)
             if form.is_valid():
                 instance = form.save(commit=False)
                 instance.user = request.user
@@ -543,7 +543,7 @@ def edit_profpage(request, id):
             y = 10 * int(profpage.Category)
 
         if request.method == 'POST':
-            form = Profform(request.POST, instance=profpage)
+            form = Profform(request.POST, request.FILES, instance=profpage)
             if form.is_valid():
                 instance = form.save(commit=False)
                 instance.user = request.user
@@ -576,7 +576,7 @@ def edit_entrepage(request, id):
         y = int(entrepage.Category)
 
         if request.method == 'POST':
-            form = Entreform(request.POST, instance=entrepage)
+            form = Entreform(request.POST, request.FILES, instance=entrepage)
             if form.is_valid():
                 instance = form.save(commit=False)
                 instance.user = request.user
@@ -605,7 +605,7 @@ def edit_leadpage(request, id):
         y = 10 * int(leadpage.Category) + int(leadpage.SubCategory)
 
         if request.method == 'POST':
-            form = LeadForm(request.POST, instance=leadpage)
+            form = LeadForm(request.POST, request.FILES, instance=leadpage)
             if form.is_valid():
                 instance = form.save(commit=False)
                 instance.user = request.user

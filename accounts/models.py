@@ -44,7 +44,7 @@ class LeadPage(models.Model):
     Category = models.IntegerField(choices=CHOICE, default=0)
     SubCategory = models.IntegerField(choices=CHOICE1, default=0)
     DocType = models.IntegerField(choices=CHOICE2, default=0)
-    File = models.FileField(upload_to='lead_file', null=True, blank=True)
+    File = models.FileField(upload_to='lead_file', null=True)
     Approved = models.BooleanField(default=False)
 
     def __str__(self):
@@ -67,7 +67,7 @@ class CultPage(models.Model):
     Level = models.IntegerField(choices=CHOICE2, default=0)
     Position = models.IntegerField(choices=CHOICE3, default=0)
     DocType = models.IntegerField(choices=CHOICE4, default=0)
-    File = models.FileField(upload_to='cult_file', null=True, blank=True)
+    File = models.FileField(upload_to='cult_file', null=True)
     Approved = models.BooleanField(default=False)
 
     def __str__(self):
@@ -95,7 +95,7 @@ class ProfPage(models.Model):
     Category = models.IntegerField(choices=CHOICE, default=0)
     Level = models.IntegerField(choices=CHOICE1, default=0)
     DocType = models.IntegerField(choices=CHOICE2, default=0)
-    File = models.FileField(upload_to='prof_file', null=True, blank=True)
+    File = models.FileField(upload_to='prof_file', null=True)
     Approved = models.BooleanField(default=False)
 
     def __str__(self):
@@ -122,7 +122,7 @@ class EntrePage(models.Model):
     user5 = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
     Category = models.IntegerField(choices=CHOICE, default=0)
     DocType = models.IntegerField(choices=CHOICE1, default=0)
-    File = models.FileField(upload_to='entre_file', null=True, blank=True)
+    File = models.FileField(upload_to='entre_file', null=True)
     Approved = models.BooleanField(default=False)
 
     def __str__(self):
@@ -145,7 +145,7 @@ class GamePage(models.Model):
     Level = models.IntegerField(choices=CHOICE2, default=0)
     Position = models.IntegerField(choices=CHOICE3, default=0)
     DocType = models.IntegerField(choices=CHOICE4, default=0)
-    File = models.FileField(upload_to='game_file', null=True, blank=True)
+    File = models.FileField(upload_to='game_file', null=True)
     Approved = models.BooleanField(default=False)
 
     def __str__(self):
@@ -172,7 +172,7 @@ class NatPage(models.Model):
     Category = models.IntegerField(choices=CHOICE1, default=0)
     SubCategory = models.IntegerField(choices=CHOICE2, default=0)
     DocType = models.IntegerField(choices=CHOICE3, default=0)
-    File = models.FileField(upload_to='nat_file', null=True, blank=True)
+    File = models.FileField(upload_to='nat_file', null=True)
     Approved = models.BooleanField(default=False)
 
     def __str__(self):

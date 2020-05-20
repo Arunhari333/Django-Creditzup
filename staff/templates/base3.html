@@ -5,15 +5,15 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     {% load static %}
-      <link  rel="stylesheet" href="{% static 'accounts/css/stylesheet.css' %}" type="text/css">
+      <link  rel="stylesheet" href="{% static 'staff/css/stylesheet.css' %}" type="text/css">
     {% block head %}
     {% endblock %}
   </head>
   <body>
         <h1 align="center" class="h1"><em>CreditZup Admin</em></h1>
         <div class="topnav">
-            <a href="/account/admin/search" class="bttn">Search</a>
-            <a href="/account/admin/home" class="bttn active">Home</a>
+            <a href="/staff/search" class="bttn">Search</a>
+            <a href="/staff/home" class="bttn active">Home</a>
             <a href="/account/logout" class="bttn right">Logout</a>
         </div>
     {% block body %}

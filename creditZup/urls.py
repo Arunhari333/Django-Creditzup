@@ -23,4 +23,5 @@ urlpatterns = [
     path('', views.login_redirect, name='login_redirect'),
     path('admin/', admin.site.urls),
     path('account/', include('accounts.urls', namespace='accounts')),
+    path('staff/', include('staff.urls', namespace='staff')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

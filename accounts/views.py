@@ -8,7 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from accounts.models import User, UserProfile, LeadPage, CultPage, ProfPage, EntrePage, GamePage, NatPage
 from accounts.database import *
-from django.contrib.admin.views.decorators import staff_member_required
 
 @login_required
 def home(request):
@@ -764,78 +763,3 @@ def change_password(request):
         form = PasswordChangeForm(user=request.user)
         args = {'form': form}
         return render(request, 'accounts/change_password.html', args)
-
-class AdminRegView(TemplateView):
-    template_name = 'admin/reg_form.html'
-
-    def get(self, request):
-        form = RegistrationForm2()
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request):
-        form = RegistrationForm2(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
-            post.save()
-
-            FirstName = form.cleaned_data['FirstName']
-            LastName = form.cleaned_data['LastName']
-            Class = form.cleaned_data['Class']
-            Semester = form.cleaned_data['Semester']
-            form = RegistrationForm2()
-            #return redirect('/account/profile/')
-            args = {'form': form, 'FirstName': FirstName, 'LastName': LastName, 'Class': Class, 'Semester': Semester}
-            return render(request, self.template_name, args)
-
-O1 = AdminRegView()
-
-@staff_member_required
-def admin_home(request):
-    if request.user.is_authenticated:
-        if UserProfile.objects.filter(user=request.user).exists():
-            details = UserProfile.objects.get(user=request.user)
-            students = UserProfile.objects.filter(Class=details.Class, Semester=details.Semester)
-            args = {'data': details, 'id': request.user.id, 'students': students}
-            return render(request, 'admin/home.html', args)
-        else:
-            if request.method == 'POST':
-                return O1.post(request)
-            else:
-                return O1.get(request)
-    else:
-         pass
-
-@login_required
-def admin_uploads(request, id):
-    user = get_object_or_404(User, id=id)
-    l1 = LeadPage.objects.filter(user1=user)
-    n1 = NatPage.objects.filter(user2=user)
-    c1 = CultPage.objects.filter(user3=user)
-    p1 = ProfPage.objects.filter(user4=user)
-    e1 = EntrePage.objects.filter(user5=user)
-    g1 = GamePage.objects.filter(user6=user)
-    args = {'lead': l1, 'nat': n1, 'cult': c1, 'prof': p1, 'entr': e1, 'game': g1,
-            'l2': l2, 'n2': n2, 'c2': c2, 'p2': p2, 'e2': e2, 'g2': g2}
-    return render(request, 'admin/uploads.html', args)
-
-@login_required
-def admin_search(request):
-    return render(request, 'admin/search.html')
-
-# @login_required
-# def edit_admin_profile(request):
-#     userprofile1 = UserProfile.objects.get(user_id=request.user.id)
-#     userprofile = get_object_or_404(UserProfile, id=userprofile1.id)
-#     if request.method == 'POST':
-#         form = RegistrationForm2(request.POST, instance=userprofile)
-#         if form.is_valid():
-#             instance = form.save(commit=False)
-#             instance.user = request.user
-#             instance.save()
-#
-#             return redirect('/account/profile/')
-#     else:
-#         form = RegistrationForm2(instance=userprofile)
-#         args = {'form': form}
-#         return render(request, 'accounts/edit_profile.html', args)

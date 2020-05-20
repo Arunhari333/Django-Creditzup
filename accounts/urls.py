@@ -46,7 +46,7 @@ urlpatterns = [
          password_reset_confirm, {'template_name': 'accounts/password_reset_confirm.html'}, name='password_reset_confirm'),
     path('accounts/reset-password/complete/', password_reset_complete,
          {'template_name': 'accounts/password_reset_complete.html'}, name='password_reset_complete'),
-    path('admin/home/', views.admin_home, name='admin_home'),
-    path('admin/student-details/<int:id>/', views.admin_uploads, name='admin_uploads'),
-    path('admin/search/', views.admin_search, name='admin_search')
+    # path('admin/home/', views.admin_home, name='admin_home'),
+    # path('admin/student-details/<int:id>/', views.admin_uploads, name='admin_uploads'),
+    # path('admin/search/', views.admin_search, name='admin_search')
 ]

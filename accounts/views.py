@@ -31,18 +31,12 @@ class national_initiatives(LoginRequiredMixin, TemplateView):
             TwoYears = form.cleaned_data['TwoYears']
             Category = form.cleaned_data['Category']
             SubCategory = form.cleaned_data['SubCategory']
-            DocType = form.cleaned_data['DocType']
-            form = NatForm()
 
             if int(TwoYears) * 1 == 1:
                 U = UserProfile.objects.get(user=request.user)
                 x = 10 * int(Category) + int(SubCategory)
                 U.TotalCredits += n[x]
                 U.save()
-
-            # id = request.user.id
-            # user = get_object_or_404(UserProfile, user_id=id)
-            # UserProfile.add_natlink(user, instance)
 
             return redirect('/account')
 
@@ -66,8 +60,6 @@ class sports_games(LoginRequiredMixin, TemplateView):
             Category = form.cleaned_data['Category']
             Level = form.cleaned_data['Level']
             Position = form.cleaned_data['Position']
-            DocType = form.cleaned_data['DocType']
-            form = Gameform()
 
             h = 0
             if int(Position) == 1:
@@ -92,10 +84,6 @@ class sports_games(LoginRequiredMixin, TemplateView):
                 U.TotalCredits += (s[x] + h)
                 U.save()
 
-            # id = request.user.id
-            # user = get_object_or_404(UserProfile, user2_id=id)
-            # UserProfile.add_link(user, instance)
-
             return redirect('/account')
 
 class cultural_activities(LoginRequiredMixin, TemplateView):
@@ -117,8 +105,6 @@ class cultural_activities(LoginRequiredMixin, TemplateView):
             Category = form.cleaned_data['Category']
             Level = form.cleaned_data['Level']
             Position = form.cleaned_data['Position']
-            DocType = form.cleaned_data['DocType']
-            form = Cultform()
 
             h = 0
             if int(Position) == 1:
@@ -143,10 +129,6 @@ class cultural_activities(LoginRequiredMixin, TemplateView):
                 U.TotalCredits += (c[x] + h)
                 U.save()
 
-            # id = request.user.id
-            # user = get_object_or_404(UserProfile, user2_id=id)
-            # UserProfile.add_link(user, instance)
-
             return redirect('/account')
 
 class prof_self_initiatives(LoginRequiredMixin, TemplateView):
@@ -166,8 +148,6 @@ class prof_self_initiatives(LoginRequiredMixin, TemplateView):
 
             Category = form.cleaned_data['Category']
             Level = form.cleaned_data['Level']
-            DocType = form.cleaned_data['DocType']
-            form = Profform()
 
             U = UserProfile.objects.get(user=request.user)
             if int(Category) == 1 or int(Category) == 3:
@@ -176,10 +156,6 @@ class prof_self_initiatives(LoginRequiredMixin, TemplateView):
                 x = 10 * int(Category)
             U.TotalCredits += p[x]
             U.save()
-
-            # id = request.user.id
-            # user = get_object_or_404(UserProfile, user2_id=id)
-            # UserProfile.add_link(user, instance)
 
             return redirect('/account')
 
@@ -198,17 +174,11 @@ class Entrepreneurship_innovation(LoginRequiredMixin, TemplateView):
             instance.save()
 
             Category = form.cleaned_data['Category']
-            DocType = form.cleaned_data['DocType']
-            form = Entreform()
 
             U = UserProfile.objects.get(user=request.user)
             x = int(Category)
             U.TotalCredits += e[x]
             U.save()
-
-            # id = request.user.id
-            # user = get_object_or_404(UserProfile, user2_id=id)
-            # UserProfile.add_link(user, instance)
 
             return redirect('/account')
 
@@ -230,17 +200,11 @@ class Leadership_management(LoginRequiredMixin, TemplateView):
 
             Category = form.cleaned_data['Category']
             SubCategory = form.cleaned_data['SubCategory']
-            DocType = form.cleaned_data['DocType']
-            form = LeadForm()
 
             U = UserProfile.objects.get(user=request.user)
             x = 10 * int(Category) + int(SubCategory)
             U.TotalCredits += l[x]
             U.save()
-
-            # id = request.user.id
-            # user = get_object_or_404(UserProfile, user2_id=id)
-            # UserProfile.add_link(user, instance)
 
             return redirect('/account')
 
@@ -276,21 +240,12 @@ class RegView(TemplateView):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-
-            FirstName = form.cleaned_data['FirstName']
-            LastName = form.cleaned_data['LastName']
-            Class = form.cleaned_data['Class']
-            Semester = form.cleaned_data['Semester']
-            form = RegistrationForm2()
-            #return redirect('/account/profile/')
-            args = {'form': form, 'FirstName': FirstName, 'LastName': LastName, 'Class': Class, 'Semester': Semester}
-            return render(request, self.template_name, args)
+            return redirect('/account/profile/')
 
 O = RegView()
 
 @login_required
 def profile(request):
-    form = RegistrationForm(request.POST)
     if request.user.is_authenticated:
         if UserProfile.objects.filter(user=request.user).exists():
             details = UserProfile.objects.get(user=request.user)
@@ -301,9 +256,8 @@ def profile(request):
                 return O.post(request)
             else:
                 return O.get(request)
-            # return render(request, 'accounts/reg_form_2.html', {'form': form})
-    else:
-         pass
+
+    return redirect('/account')
 
 @login_required
 def view_natpage(request, id):
@@ -351,7 +305,6 @@ def edit_profile(request):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-
             return redirect('/account/profile/')
     else:
         form = RegistrationForm2(instance=userprofile)

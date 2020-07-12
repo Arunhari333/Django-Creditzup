@@ -58,86 +58,86 @@ def uploads(request, id):
     e1 = EntrePage.objects.filter(user5=user)
     g1 = GamePage.objects.filter(user6=user)
     args = {'lead': l1, 'nat': n1, 'cult': c1, 'prof': p1, 'entr': e1, 'game': g1,
-            'l2': l2, 'n2': n2, 'c2': c2, 'p2': p2, 'e2': e2, 'g2': g2}
+            'l2': l2, 'n2': n2, 'c2': c2, 'p2': p2, 'e2': e2, 'g2': g2, 'user_profile_id': id}
     return render(request, 'staff/uploads.html', args)
 
 @staff_member_required
-def view_natpage(request, id):
+def view_natpage(request, uid, id):
     natpage = get_object_or_404(NatPage, id=id)
-    args = {'O': natpage, 'ref': n2}
+    args = {'O': natpage, 'ref': n2, 'user_profile_id': uid}
     return render(request, 'staff/nat_display.html', args)
 
 @staff_member_required
-def view_gamepage(request, id):
+def view_gamepage(request, uid, id):
     gamepage = get_object_or_404(GamePage, id=id)
-    args = {'O': gamepage, 'ref': g2}
+    args = {'O': gamepage, 'ref': g2, 'user_profile_id': uid}
     return render(request, 'staff/game_display.html', args)
 
 @staff_member_required
-def view_cultpage(request, id):
+def view_cultpage(request, uid, id):
     cultpage = get_object_or_404(CultPage, id=id)
-    args = {'O': cultpage, 'ref': c2}
+    args = {'O': cultpage, 'ref': c2, 'user_profile_id': uid}
     return render(request, 'staff/cult_display.html', args)
 
 @staff_member_required
-def view_profpage(request, id):
+def view_profpage(request, uid, id):
     profpage = get_object_or_404(ProfPage, id=id)
-    args = {'O': profpage, 'ref': p2}
+    args = {'O': profpage, 'ref': p2, 'user_profile_id': uid}
     return render(request, 'staff/prof_display.html', args)
 
 @staff_member_required
-def view_entrepage(request, id):
+def view_entrepage(request, uid, id):
     entrepage = get_object_or_404(EntrePage, id=id)
-    args = {'O': entrepage, 'ref': e2}
+    args = {'O': entrepage, 'ref': e2, 'user_profile_id': uid}
     return render(request, 'staff/entre_display.html', args)
 
 @staff_member_required
-def view_leadpage(request, id):
+def view_leadpage(request, uid, id):
     leadpage = get_object_or_404(LeadPage, id=id)
-    args = {'O': leadpage, 'ref': l2}
+    args = {'O': leadpage, 'ref': l2, 'user_profile_id': uid}
     return render(request, 'staff/lead_display.html', args)
 
 @staff_member_required
-def approve_natpage(request, id):
+def approve_natpage(request, uid, id):
     natpage = get_object_or_404(NatPage, id=id)
     natpage.Approved = not natpage.Approved
     natpage.save()
-    return redirect('staff/student-details/{}/'.format(natpage.user1_id))
+    return redirect('/staff/student-details/{}'.format(uid))
 
 @staff_member_required
-def approve_gamepage(request, id):
+def approve_gamepage(request, uid, id):
     gamepage = get_object_or_404(GamePage, id=id)
     gamepage.Approved = not gamepage.Approved
     gamepage.save()
-    return redirect('staff/student-details/{}/'.format(gamepage.user1_id))
+    return redirect('/staff/student-details/{}'.format(uid))
 
 @staff_member_required
-def approve_cultpage(request, id):
+def approve_cultpage(request, uid, id):
     cultpage = get_object_or_404(CultPage, id=id)
-    leadpage.Approved = not leadpage.Approved
-    leadpage.save()
-    return redirect('staff/student-details/{}/'.format(leadpage.user1_id))
+    cultpage.Approved = not cultpage.Approved
+    cultpage.save()
+    return redirect('/staff/student-details/{}'.format(uid))
 
 @staff_member_required
-def staff_approve_profpage(request, id):
+def approve_profpage(request, uid, id):
     profpage = get_object_or_404(ProfPage, id=id)
     profpage.Approved = not profpage.Approved
     profpage.save()
-    return redirect('staff/student-details/{}/'.format(profpage.user1_id))
+    return redirect('/staff/student-details/{}'.format(uid))
 
 @staff_member_required
-def approve_entrepage(request, id):
+def approve_entrepage(request, uid, id):
     entrepage = get_object_or_404(EntrePage, id=id)
     entrepage.Approved = not entrepage.Approved
     entrepage.save()
-    return redirect('staff/student-details/{}/'.format(entrepage.user1_id))
+    return redirect('/staff/student-details/{}'.format(uid))
 
 @staff_member_required
-def approve_leadpage(request, id):
+def approve_leadpage(request, uid, id):
     leadpage = get_object_or_404(LeadPage, id=id)
     leadpage.Approved = not leadpage.Approved
     leadpage.save()
-    return redirect('staff/student-details/{}/'.format(leadpage.user1_id))
+    return redirect('/staff/student-details/{}'.format(uid))
 
 @staff_member_required
 def search(request):

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base3.html' %}
 {% block body %}
 <center>
 <div class='container' style="width:35%">
@@ -41,6 +41,15 @@
                     </div>
                       <div class="card-action">
                         <a href="{{ O.File.url }}" target="_blank">View Certificate</a>
+                      </div>
+                      <div class="card-action">
+                          {% if O.Approved == True %}
+                              <a href="{% url 'staff:approve_natpage' user_profile_id O.id %}"
+                                 class="waves-effect waves-light btn">Disapprove</a>
+                          {% else %}
+                              <a href="{% url 'staff:approve_natpage' user_profile_id O.id %}"
+                                 class="waves-effect waves-light btn">Approve</a>
+                          {% endif %}
                       </div>
                   </div>
                 </div>

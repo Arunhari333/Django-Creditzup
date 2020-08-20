@@ -3,7 +3,7 @@
   <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     {% load static %}
       <link  rel="stylesheet" href="{% static 'accounts/css/stylesheet.css' %}" type="text/css">
     {% block head %}
@@ -24,21 +24,11 @@
             <div class="topnav">
                 <a href="/account/login">Login</a>
                 <a href="/account/register">Register</a>
-                <a href="/account/admin/home" class="right">Admin-Login</a>
+                <a href="/staff/home" class="right">Admin-Login</a>
             </div>
       {% endif %}
     {% block body %}
     {% endblock %}
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>
-<!--var header = document.getElementById("topnav");-->
-      <!--var btns = header.getElementsByClassName("bttn");-->
-      <!--for (var i = 0; i < btns.length; i++) {-->
-          <!--btns[i].addEventListener("click", function() {-->
-              <!--event.preventDefault();-->
-              <!--var current = document.getElementsByClassName("active");-->
-              <!--current[0].className = current[0].className.replace(" active", "");-->
-              <!--this.className += " active";-->
-          <!--});-->
-      <!--}-->

@@ -8,7 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from accounts.models import User, UserProfile, LeadPage, CultPage, ProfPage, EntrePage, GamePage, NatPage
 from accounts.database import *
-from django.contrib.admin.views.decorators import staff_member_required
 
 @login_required
 def home(request):
@@ -26,24 +25,18 @@ class national_initiatives(LoginRequiredMixin, TemplateView):
         form = NatForm(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user2 = request.user
+            instance.user = request.user
             instance.save()
 
             TwoYears = form.cleaned_data['TwoYears']
             Category = form.cleaned_data['Category']
             SubCategory = form.cleaned_data['SubCategory']
-            DocType = form.cleaned_data['DocType']
-            form = NatForm()
 
             if int(TwoYears) * 1 == 1:
                 U = UserProfile.objects.get(user=request.user)
                 x = 10 * int(Category) + int(SubCategory)
                 U.TotalCredits += n[x]
                 U.save()
-
-            # id = request.user.id
-            # user = get_object_or_404(UserProfile, user_id=id)
-            # UserProfile.add_natlink(user, instance)
 
             return redirect('/account')
 
@@ -60,15 +53,13 @@ class sports_games(LoginRequiredMixin, TemplateView):
         form = Gameform(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user6 = request.user
+            instance.user = request.user
             instance.save()
 
             OneYear = form.cleaned_data['OneYear']
             Category = form.cleaned_data['Category']
             Level = form.cleaned_data['Level']
             Position = form.cleaned_data['Position']
-            DocType = form.cleaned_data['DocType']
-            form = Gameform()
 
             h = 0
             if int(Position) == 1:
@@ -93,10 +84,6 @@ class sports_games(LoginRequiredMixin, TemplateView):
                 U.TotalCredits += (s[x] + h)
                 U.save()
 
-            # id = request.user.id
-            # user = get_object_or_404(UserProfile, user2_id=id)
-            # UserProfile.add_link(user, instance)
-
             return redirect('/account')
 
 class cultural_activities(LoginRequiredMixin, TemplateView):
@@ -111,15 +98,13 @@ class cultural_activities(LoginRequiredMixin, TemplateView):
         form = Cultform(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user3 = request.user
+            instance.user = request.user
             instance.save()
 
             OneYear = form.cleaned_data['OneYear']
             Category = form.cleaned_data['Category']
             Level = form.cleaned_data['Level']
             Position = form.cleaned_data['Position']
-            DocType = form.cleaned_data['DocType']
-            form = Cultform()
 
             h = 0
             if int(Position) == 1:
@@ -144,10 +129,6 @@ class cultural_activities(LoginRequiredMixin, TemplateView):
                 U.TotalCredits += (c[x] + h)
                 U.save()
 
-            # id = request.user.id
-            # user = get_object_or_404(UserProfile, user2_id=id)
-            # UserProfile.add_link(user, instance)
-
             return redirect('/account')
 
 class prof_self_initiatives(LoginRequiredMixin, TemplateView):
@@ -162,13 +143,11 @@ class prof_self_initiatives(LoginRequiredMixin, TemplateView):
         form = Profform(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user4 = request.user
+            instance.user = request.user
             instance.save()
 
             Category = form.cleaned_data['Category']
             Level = form.cleaned_data['Level']
-            DocType = form.cleaned_data['DocType']
-            form = Profform()
 
             U = UserProfile.objects.get(user=request.user)
             if int(Category) == 1 or int(Category) == 3:
@@ -177,10 +156,6 @@ class prof_self_initiatives(LoginRequiredMixin, TemplateView):
                 x = 10 * int(Category)
             U.TotalCredits += p[x]
             U.save()
-
-            # id = request.user.id
-            # user = get_object_or_404(UserProfile, user2_id=id)
-            # UserProfile.add_link(user, instance)
 
             return redirect('/account')
 
@@ -195,21 +170,15 @@ class Entrepreneurship_innovation(LoginRequiredMixin, TemplateView):
         form = Entreform(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user5 = request.user
+            instance.user = request.user
             instance.save()
 
             Category = form.cleaned_data['Category']
-            DocType = form.cleaned_data['DocType']
-            form = Entreform()
 
             U = UserProfile.objects.get(user=request.user)
             x = int(Category)
             U.TotalCredits += e[x]
             U.save()
-
-            # id = request.user.id
-            # user = get_object_or_404(UserProfile, user2_id=id)
-            # UserProfile.add_link(user, instance)
 
             return redirect('/account')
 
@@ -226,22 +195,16 @@ class Leadership_management(LoginRequiredMixin, TemplateView):
         form = LeadForm(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user1 = request.user
+            instance.user = request.user
             instance.save()
 
             Category = form.cleaned_data['Category']
             SubCategory = form.cleaned_data['SubCategory']
-            DocType = form.cleaned_data['DocType']
-            form = LeadForm()
 
             U = UserProfile.objects.get(user=request.user)
             x = 10 * int(Category) + int(SubCategory)
             U.TotalCredits += l[x]
             U.save()
-
-            # id = request.user.id
-            # user = get_object_or_404(UserProfile, user2_id=id)
-            # UserProfile.add_link(user, instance)
 
             return redirect('/account')
 
@@ -277,21 +240,12 @@ class RegView(TemplateView):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-
-            FirstName = form.cleaned_data['FirstName']
-            LastName = form.cleaned_data['LastName']
-            Class = form.cleaned_data['Class']
-            Semester = form.cleaned_data['Semester']
-            form = RegistrationForm2()
-            #return redirect('/account/profile/')
-            args = {'form': form, 'FirstName': FirstName, 'LastName': LastName, 'Class': Class, 'Semester': Semester}
-            return render(request, self.template_name, args)
+            return redirect('/account/profile/')
 
 O = RegView()
 
 @login_required
 def profile(request):
-    form = RegistrationForm(request.POST)
     if request.user.is_authenticated:
         if UserProfile.objects.filter(user=request.user).exists():
             details = UserProfile.objects.get(user=request.user)
@@ -302,9 +256,8 @@ def profile(request):
                 return O.post(request)
             else:
                 return O.get(request)
-            # return render(request, 'accounts/reg_form_2.html', {'form': form})
-    else:
-         pass
+
+    return redirect('/account')
 
 @login_required
 def view_natpage(request, id):
@@ -352,7 +305,6 @@ def edit_profile(request):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-
             return redirect('/account/profile/')
     else:
         form = RegistrationForm2(instance=userprofile)
@@ -362,7 +314,7 @@ def edit_profile(request):
 @login_required
 def edit_natpage(request, id):
     natpage = get_object_or_404(NatPage, id=id)
-    if natpage.user2_id == request.user.id:
+    if natpage.user_id == request.user.id:
         U = UserProfile.objects.get(user=request.user)
         y = 10 * int(natpage.Category) + int(natpage.SubCategory)
         if int(natpage.TwoYears) * 1 == 1:
@@ -395,7 +347,7 @@ def edit_natpage(request, id):
 @login_required
 def edit_gamepage(request, id):
     gamepage = get_object_or_404(GamePage, id=id)
-    if gamepage.user6_id == request.user.id:
+    if gamepage.user_id == request.user.id:
         U = UserProfile.objects.get(user=request.user)
         y = 10 * int(gamepage.Category) + int(gamepage.Level)
 
@@ -466,7 +418,7 @@ def edit_gamepage(request, id):
 @login_required
 def edit_cultpage(request, id):
     cultpage = get_object_or_404(CultPage, id=id)
-    if cultpage.user3_id == request.user.id:
+    if cultpage.user_id == request.user.id:
         U = UserProfile.objects.get(user=request.user)
         y = 10 * int(cultpage.Category) + int(cultpage.Level)
 
@@ -535,7 +487,7 @@ def edit_cultpage(request, id):
 @login_required
 def edit_profpage(request, id):
     profpage = get_object_or_404(ProfPage, id=id)
-    if profpage.user4_id == request.user.id:
+    if profpage.user_id == request.user.id:
         U = UserProfile.objects.get(user=request.user)
         if int(profpage.Category) == 1 or int(profpage.Category) == 3:
             y = 10 * int(profpage.Category) + int(profpage.Level)
@@ -571,7 +523,7 @@ def edit_profpage(request, id):
 @login_required
 def edit_entrepage(request, id):
     entrepage = get_object_or_404(EntrePage, id=id)
-    if entrepage.user5_id == request.user.id:
+    if entrepage.user_id == request.user.id:
         U = UserProfile.objects.get(user=request.user)
         y = int(entrepage.Category)
 
@@ -600,7 +552,7 @@ def edit_entrepage(request, id):
 @login_required
 def edit_leadpage(request, id):
     leadpage = get_object_or_404(LeadPage, id=id)
-    if leadpage.user1_id == request.user.id:
+    if leadpage.user_id == request.user.id:
         U = UserProfile.objects.get(user=request.user)
         y = 10 * int(leadpage.Category) + int(leadpage.SubCategory)
 
@@ -738,12 +690,12 @@ def delete_leadpage(request, id):
 @login_required
 def uploads(request):
     user = request.user
-    l1 = LeadPage.objects.filter(user1=user)
-    n1 = NatPage.objects.filter(user2=user)
-    c1 = CultPage.objects.filter(user3=user)
-    p1 = ProfPage.objects.filter(user4=user)
-    e1 = EntrePage.objects.filter(user5=user)
-    g1 = GamePage.objects.filter(user6=user)
+    l1 = LeadPage.objects.filter(user=user)
+    n1 = NatPage.objects.filter(user=user)
+    c1 = CultPage.objects.filter(user=user)
+    p1 = ProfPage.objects.filter(user=user)
+    e1 = EntrePage.objects.filter(user=user)
+    g1 = GamePage.objects.filter(user=user)
     args = {'lead': l1, 'nat': n1, 'cult': c1, 'prof': p1, 'entr': e1, 'game': g1,
             'l2': l2, 'n2': n2, 'c2': c2, 'p2': p2, 'e2': e2, 'g2': g2}
     return render(request, 'accounts/uploads.html', args)
@@ -764,78 +716,3 @@ def change_password(request):
         form = PasswordChangeForm(user=request.user)
         args = {'form': form}
         return render(request, 'accounts/change_password.html', args)
-
-class AdminRegView(TemplateView):
-    template_name = 'admin/reg_form.html'
-
-    def get(self, request):
-        form = RegistrationForm2()
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request):
-        form = RegistrationForm2(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
-            post.save()
-
-            FirstName = form.cleaned_data['FirstName']
-            LastName = form.cleaned_data['LastName']
-            Class = form.cleaned_data['Class']
-            Semester = form.cleaned_data['Semester']
-            form = RegistrationForm2()
-            #return redirect('/account/profile/')
-            args = {'form': form, 'FirstName': FirstName, 'LastName': LastName, 'Class': Class, 'Semester': Semester}
-            return render(request, self.template_name, args)
-
-O1 = AdminRegView()
-
-@staff_member_required
-def admin_home(request):
-    if request.user.is_authenticated:
-        if UserProfile.objects.filter(user=request.user).exists():
-            details = UserProfile.objects.get(user=request.user)
-            students = UserProfile.objects.filter(Class=details.Class, Semester=details.Semester)
-            args = {'data': details, 'id': request.user.id, 'students': students}
-            return render(request, 'admin/home.html', args)
-        else:
-            if request.method == 'POST':
-                return O1.post(request)
-            else:
-                return O1.get(request)
-    else:
-         pass
-
-@login_required
-def admin_uploads(request, id):
-    user = get_object_or_404(User, id=id)
-    l1 = LeadPage.objects.filter(user1=user)
-    n1 = NatPage.objects.filter(user2=user)
-    c1 = CultPage.objects.filter(user3=user)
-    p1 = ProfPage.objects.filter(user4=user)
-    e1 = EntrePage.objects.filter(user5=user)
-    g1 = GamePage.objects.filter(user6=user)
-    args = {'lead': l1, 'nat': n1, 'cult': c1, 'prof': p1, 'entr': e1, 'game': g1,
-            'l2': l2, 'n2': n2, 'c2': c2, 'p2': p2, 'e2': e2, 'g2': g2}
-    return render(request, 'admin/uploads.html', args)
-
-@login_required
-def admin_search(request):
-    return render(request, 'admin/search.html')
-
-# @login_required
-# def edit_admin_profile(request):
-#     userprofile1 = UserProfile.objects.get(user_id=request.user.id)
-#     userprofile = get_object_or_404(UserProfile, id=userprofile1.id)
-#     if request.method == 'POST':
-#         form = RegistrationForm2(request.POST, instance=userprofile)
-#         if form.is_valid():
-#             instance = form.save(commit=False)
-#             instance.user = request.user
-#             instance.save()
-#
-#             return redirect('/account/profile/')
-#     else:
-#         form = RegistrationForm2(instance=userprofile)
-#         args = {'form': form}
-#         return render(request, 'accounts/edit_profile.html', args)

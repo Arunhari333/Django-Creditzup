@@ -5,6 +5,8 @@ from staff.models import StaffProfile
 from accounts.models import User, UserProfile, LeadPage, CultPage, ProfPage, EntrePage, GamePage, NatPage
 from accounts.database import *
 from django.contrib.admin.views.decorators import staff_member_required
+import json
+from django.http import JsonResponse
 
 # Create your views here.
 class AdminRegView(TemplateView):
@@ -51,12 +53,12 @@ def home(request):
 @staff_member_required
 def uploads(request, id):
     user = get_object_or_404(User, id=id)
-    l1 = LeadPage.objects.filter(user1=user)
-    n1 = NatPage.objects.filter(user2=user)
-    c1 = CultPage.objects.filter(user3=user)
-    p1 = ProfPage.objects.filter(user4=user)
-    e1 = EntrePage.objects.filter(user5=user)
-    g1 = GamePage.objects.filter(user6=user)
+    l1 = LeadPage.objects.filter(user=user)
+    n1 = NatPage.objects.filter(user=user)
+    c1 = CultPage.objects.filter(user=user)
+    p1 = ProfPage.objects.filter(user=user)
+    e1 = EntrePage.objects.filter(user=user)
+    g1 = GamePage.objects.filter(user=user)
     args = {'lead': l1, 'nat': n1, 'cult': c1, 'prof': p1, 'entr': e1, 'game': g1,
             'l2': l2, 'n2': n2, 'c2': c2, 'p2': p2, 'e2': e2, 'g2': g2, 'user_profile_id': id}
     return render(request, 'staff/uploads.html', args)
@@ -141,4 +143,88 @@ def approve_leadpage(request, uid, id):
 
 @staff_member_required
 def search(request):
+    if request.method == 'POST':
+        type = int(request.POST.get('type'))
+        category = request.POST.get('category')
+        subcategory = request.POST.get('subcategory')
+        mini = request.POST.get('min')
+        maxi = request.POST.get('max')
+        if type == 1:
+            result = NatPage.objects.all()
+        elif type == 2:
+            result = GamePage.objects.all()
+        elif type == 3:
+            result = CultPage.objects.all()
+        elif type == 4:
+            result = LeadPage.objects.all()
+        elif type == 5:
+            result = ProfPage.objects.all()
+        else:
+            result = EntrePage.objects.all()
+        if category:
+            result = result.filter(Category=int(category))
+        if subcategory:
+            if type == 4 or type == 6:
+                result = result.filter(SubCategory=int(subcategory))
+            else:
+                result = result.filter(Level=int(subcategory))
+        if mini:
+            result = result.filter(user__userprofile__TotalCredits__gte=int(mini))
+        if maxi:
+            result = result.filter(user__userprofile__TotalCredits__lte=int(maxi))
+        u = set()
+        users = []
+        for res in result:
+            if res.user not in u:
+                u.add(res.user)
+                users.append(res.user.userprofile)
+        count = len(users)
+        users.sort(key=lambda x: x.FirstName)
+        args = {'students': users, 'count': count}
+        return render(request, 'staff/search_results.html', args)
     return render(request, 'staff/search.html')
+
+# @staff_member_required
+# def search_results_ajax(request):
+#     try:
+#         data = json.loads(request.body)
+#     except:
+#         return redirect('/')
+#     type = int(data['type'])
+#     category = data['category']
+#     subcategory = data['subcategory']
+#     min = data['min']
+#     max = data['max']
+#     print(type, category, subcategory, min, max)
+#     if type == 1:
+#         result = NatPage.objects.all()
+#     elif type == 2:
+#         result = GamePage.objects.all()
+#     elif type == 3:
+#         result = CultPage.objects.all()
+#     elif type == 4:
+#         result = LeadPage.objects.all()
+#     elif type == 5:
+#         result = ProfPage.objects.all()
+#     else:
+#         result = EntrePage.objects.all()
+#     if category:
+#         result = result.filter(Category=int(category))
+#     if subcategory:
+#         if type == 4 or type == 6:
+#             result = result.filter(SubCategory=int(subcategory))
+#         else:
+#             result = result.filter(Level=int(subcategory))
+#     if min:
+#         result = result.filter(user__userprofile__TotalCredits__gte=int(min))
+#     if max:
+#         result = result.filter(user__userprofile__TotalCredits__lte=int(max))
+#     u = set()
+#     users = []
+#     for res in result:
+#         if res.user not in u:
+#             u.add(res.user)
+#             userprofile = res.user.userprofile
+#             users.append({'user_id': userprofile.user_id, 'FirstName': userprofile.FirstName,
+#                           'LastName': userprofile.LastName})
+#     return JsonResponse({'result': list(result.values()), 'users': users})

@@ -6,7 +6,49 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container" style="width: 85%; padding: 20px 0;">
-        <h1>Search function not implemented yet!!!</h1>
+    <div class="container" style="width: 40%; padding: 25px; margin-top: 30px; margin-bottom: 20px; background-color: white;">
+        <div class="row">
+            <form method="post" class="col s12">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id="type" name="type" onchange="Select()">
+                          <option value="" disabled selected>Choose your option</option>
+                          <option value="1">National Initiatives (NCC, NSS)</option>
+                          <option value="2">Sports and Games</option>
+                          <option value="3">Cultural Activity</option>
+                          <option value="4">Leadership and Management</option>
+                          <option value="5">Professional Self Initiatives</option>
+                          <option value="6">Entrepreneurship and Innovation</option>
+                        </select>
+                        <label>Select Type of Activity</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <select id="category" name="category">
+                          <option value="" disabled selected>Select a type first</option>
+                        </select>
+                        <label>Select Category</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <select id="subcategory" name="subcategory">
+                          <option value="" disabled selected>Select a category first</option>
+                        </select>
+                        <label>Select Subcategory</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="min" type="number" class="validate" name="min">
+                        <label for="min">Min</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="max" type="number" class="validate" name="max">
+                        <label for="max">Max</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" style="float: right;">Submit</button>
+            </form>
+        </div>
     </div>
+    <!--<div class="container" id="results" style="width: 40%; padding: 25px; margin-top: 30px; margin-bottom: 20px;"></div>-->
 {% endblock %}

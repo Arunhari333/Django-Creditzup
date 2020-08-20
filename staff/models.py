@@ -15,4 +15,4 @@ class StaffProfile(models.Model):
     Semester = models.IntegerField(default=0)
 
     def __str__(self):
-        return '%s' % (self.user)
+        return '%s' % self.user

@@ -40,7 +40,7 @@ class LeadPage(models.Model):
                (5, '(e) Legal Proof'), (6, 'Others')
                )
 
-    user1 = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
+    user = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
     Category = models.IntegerField(choices=CHOICE, default=0)
     SubCategory = models.IntegerField(choices=CHOICE1, default=0)
     DocType = models.IntegerField(choices=CHOICE2, default=0)
@@ -48,7 +48,7 @@ class LeadPage(models.Model):
     Approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return '%s' % (self.user1)
+        return '%s' % (self.user)
 
 class CultPage(models.Model):
     CHOICE = ((1, 'Yes'), (2, 'No'))
@@ -61,7 +61,7 @@ class CultPage(models.Model):
                (5, '(e) Legal Proof'), (6, 'Others')
                )
 
-    user3 = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
+    user = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
     OneYear = models.IntegerField(choices=CHOICE, default=0)
     Category = models.IntegerField(choices=CHOICE1, default=0)
     Level = models.IntegerField(choices=CHOICE2, default=0)
@@ -71,7 +71,7 @@ class CultPage(models.Model):
     Approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return '%s' % (self.user3)
+        return '%s' % (self.user)
 
 class ProfPage(models.Model):
     CHOICE = ((0, 'Select:'),
@@ -91,7 +91,7 @@ class ProfPage(models.Model):
                (5, '(e) Legal Proof'), (6, 'Others')
                )
 
-    user4 = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
+    user = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
     Category = models.IntegerField(choices=CHOICE, default=0)
     Level = models.IntegerField(choices=CHOICE1, default=0)
     DocType = models.IntegerField(choices=CHOICE2, default=0)
@@ -99,7 +99,7 @@ class ProfPage(models.Model):
     Approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return '%s' % (self.user4)
+        return '%s' % (self.user)
 
 class EntrePage(models.Model):
     CHOICE = ((0, 'Select:'),
@@ -119,14 +119,14 @@ class EntrePage(models.Model):
                (5, '(e) Legal Proof'), (6, 'Others')
                )
 
-    user5 = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
+    user = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
     Category = models.IntegerField(choices=CHOICE, default=0)
     DocType = models.IntegerField(choices=CHOICE1, default=0)
     File = models.FileField(upload_to='entre_file', null=True)
     Approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return '%s' % (self.user5)
+        return '%s' % (self.user)
 
 class GamePage(models.Model):
     CHOICE = ((1, 'Yes'), (2, 'No'))
@@ -139,7 +139,7 @@ class GamePage(models.Model):
                (5, '(e) Legal Proof'), (6, 'Others')
                )
 
-    user6 = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
+    user = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
     OneYear = models.IntegerField(choices=CHOICE, default=0)
     Category = models.IntegerField(choices=CHOICE1, default=0)
     Level = models.IntegerField(choices=CHOICE2, default=0)
@@ -149,7 +149,7 @@ class GamePage(models.Model):
     Approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return '%s' % (self.user6)
+        return '%s' % (self.user)
 
 class NatPage(models.Model):
     CHOICE = ((1, 'Yes'), (2, 'No'))
@@ -167,7 +167,7 @@ class NatPage(models.Model):
                (3, '(c) Appreciation recognition letter'), (4, '(d)Documentary evidence'),
                (5, '(e) Legal Proof'), (6, 'Others'))
 
-    user2 = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
+    user = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
     TwoYears = models.IntegerField(choices=CHOICE, default=0)
     Category = models.IntegerField(choices=CHOICE1, default=0)
     SubCategory = models.IntegerField(choices=CHOICE2, default=0)
@@ -176,4 +176,4 @@ class NatPage(models.Model):
     Approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return '%s' % (self.user2)
+        return '%s' % (self.user)

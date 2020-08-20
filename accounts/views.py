@@ -25,7 +25,7 @@ class national_initiatives(LoginRequiredMixin, TemplateView):
         form = NatForm(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user2 = request.user
+            instance.user = request.user
             instance.save()
 
             TwoYears = form.cleaned_data['TwoYears']
@@ -53,7 +53,7 @@ class sports_games(LoginRequiredMixin, TemplateView):
         form = Gameform(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user6 = request.user
+            instance.user = request.user
             instance.save()
 
             OneYear = form.cleaned_data['OneYear']
@@ -98,7 +98,7 @@ class cultural_activities(LoginRequiredMixin, TemplateView):
         form = Cultform(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user3 = request.user
+            instance.user = request.user
             instance.save()
 
             OneYear = form.cleaned_data['OneYear']
@@ -143,7 +143,7 @@ class prof_self_initiatives(LoginRequiredMixin, TemplateView):
         form = Profform(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user4 = request.user
+            instance.user = request.user
             instance.save()
 
             Category = form.cleaned_data['Category']
@@ -170,7 +170,7 @@ class Entrepreneurship_innovation(LoginRequiredMixin, TemplateView):
         form = Entreform(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user5 = request.user
+            instance.user = request.user
             instance.save()
 
             Category = form.cleaned_data['Category']
@@ -195,7 +195,7 @@ class Leadership_management(LoginRequiredMixin, TemplateView):
         form = LeadForm(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user1 = request.user
+            instance.user = request.user
             instance.save()
 
             Category = form.cleaned_data['Category']
@@ -314,7 +314,7 @@ def edit_profile(request):
 @login_required
 def edit_natpage(request, id):
     natpage = get_object_or_404(NatPage, id=id)
-    if natpage.user2_id == request.user.id:
+    if natpage.user_id == request.user.id:
         U = UserProfile.objects.get(user=request.user)
         y = 10 * int(natpage.Category) + int(natpage.SubCategory)
         if int(natpage.TwoYears) * 1 == 1:
@@ -347,7 +347,7 @@ def edit_natpage(request, id):
 @login_required
 def edit_gamepage(request, id):
     gamepage = get_object_or_404(GamePage, id=id)
-    if gamepage.user6_id == request.user.id:
+    if gamepage.user_id == request.user.id:
         U = UserProfile.objects.get(user=request.user)
         y = 10 * int(gamepage.Category) + int(gamepage.Level)
 
@@ -418,7 +418,7 @@ def edit_gamepage(request, id):
 @login_required
 def edit_cultpage(request, id):
     cultpage = get_object_or_404(CultPage, id=id)
-    if cultpage.user3_id == request.user.id:
+    if cultpage.user_id == request.user.id:
         U = UserProfile.objects.get(user=request.user)
         y = 10 * int(cultpage.Category) + int(cultpage.Level)
 
@@ -487,7 +487,7 @@ def edit_cultpage(request, id):
 @login_required
 def edit_profpage(request, id):
     profpage = get_object_or_404(ProfPage, id=id)
-    if profpage.user4_id == request.user.id:
+    if profpage.user_id == request.user.id:
         U = UserProfile.objects.get(user=request.user)
         if int(profpage.Category) == 1 or int(profpage.Category) == 3:
             y = 10 * int(profpage.Category) + int(profpage.Level)
@@ -523,7 +523,7 @@ def edit_profpage(request, id):
 @login_required
 def edit_entrepage(request, id):
     entrepage = get_object_or_404(EntrePage, id=id)
-    if entrepage.user5_id == request.user.id:
+    if entrepage.user_id == request.user.id:
         U = UserProfile.objects.get(user=request.user)
         y = int(entrepage.Category)
 
@@ -552,7 +552,7 @@ def edit_entrepage(request, id):
 @login_required
 def edit_leadpage(request, id):
     leadpage = get_object_or_404(LeadPage, id=id)
-    if leadpage.user1_id == request.user.id:
+    if leadpage.user_id == request.user.id:
         U = UserProfile.objects.get(user=request.user)
         y = 10 * int(leadpage.Category) + int(leadpage.SubCategory)
 
@@ -690,12 +690,12 @@ def delete_leadpage(request, id):
 @login_required
 def uploads(request):
     user = request.user
-    l1 = LeadPage.objects.filter(user1=user)
-    n1 = NatPage.objects.filter(user2=user)
-    c1 = CultPage.objects.filter(user3=user)
-    p1 = ProfPage.objects.filter(user4=user)
-    e1 = EntrePage.objects.filter(user5=user)
-    g1 = GamePage.objects.filter(user6=user)
+    l1 = LeadPage.objects.filter(user=user)
+    n1 = NatPage.objects.filter(user=user)
+    c1 = CultPage.objects.filter(user=user)
+    p1 = ProfPage.objects.filter(user=user)
+    e1 = EntrePage.objects.filter(user=user)
+    g1 = GamePage.objects.filter(user=user)
     args = {'lead': l1, 'nat': n1, 'cult': c1, 'prof': p1, 'entr': e1, 'game': g1,
             'l2': l2, 'n2': n2, 'c2': c2, 'p2': p2, 'e2': e2, 'g2': g2}
     return render(request, 'accounts/uploads.html', args)

@@ -1,15 +1,13 @@
 from django.urls import path
 from . import views
-from django.contrib.auth.views import (
-    login, logout, password_reset, password_reset_done, password_reset_confirm, password_reset_complete
-)
 
 app_name = 'staff'
 
 urlpatterns = [
     path('home', views.home, name='home'),
     path('student-details/<int:id>', views.uploads, name='uploads'),
-    path('search', views.search, name='search'),
+    path('search/', views.search, name='search'),
+    # path('search-results-ajax/', views.search_results_ajax, name='search_results_ajax'),
     path('national-initiatives/view/<int:uid>/<int:id>', views.view_natpage, name='view_natpage'),
     path('sports-&-games/view/<int:uid>/<int:id>', views.view_gamepage, name='view_gamepage'),
     path('cultural-activities/view/<int:uid>/<int:id>', views.view_cultpage, name='view_cultpage'),

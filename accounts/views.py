@@ -9,9 +9,11 @@ from django.views.generic import TemplateView
 from accounts.models import User, UserProfile, LeadPage, CultPage, ProfPage, EntrePage, GamePage, NatPage
 from accounts.database import *
 
+
 @login_required
 def home(request):
     return render(request, 'accounts/home.html')
+
 
 class national_initiatives(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/national_initiatives.html'
@@ -27,18 +29,8 @@ class national_initiatives(LoginRequiredMixin, TemplateView):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-
-            TwoYears = form.cleaned_data['TwoYears']
-            Category = form.cleaned_data['Category']
-            SubCategory = form.cleaned_data['SubCategory']
-
-            if int(TwoYears) * 1 == 1:
-                U = UserProfile.objects.get(user=request.user)
-                x = 10 * int(Category) + int(SubCategory)
-                U.TotalCredits += n[x]
-                U.save()
-
             return redirect('/account')
+
 
 class sports_games(LoginRequiredMixin, TemplateView):
 
@@ -49,42 +41,13 @@ class sports_games(LoginRequiredMixin, TemplateView):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
-
         form = Gameform(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-
-            OneYear = form.cleaned_data['OneYear']
-            Category = form.cleaned_data['Category']
-            Level = form.cleaned_data['Level']
-            Position = form.cleaned_data['Position']
-
-            h = 0
-            if int(Position) == 1:
-                if int(Level) in [1, 2, 3]:
-                    h += 10
-                elif int(Level) in [4, 5]:
-                    h += 20
-            elif int(Position) == 2:
-                if int(Level) in [1, 2, 3]:
-                    h += 8
-                elif int(Level) in [4, 5]:
-                    h += 16
-            elif int(Position) == 3:
-                if int(Level) in [1, 2, 3]:
-                    h += 5
-                elif int(Level) in [4, 5]:
-                    h += 12
-
-            if int(OneYear) * 1 == 1:
-                U = UserProfile.objects.get(user=request.user)
-                x = 10 * int(Category) + int(Level)
-                U.TotalCredits += (s[x] + h)
-                U.save()
-
             return redirect('/account')
+
 
 class cultural_activities(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/cultural_activities.html'
@@ -94,42 +57,13 @@ class cultural_activities(LoginRequiredMixin, TemplateView):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
-
         form = Cultform(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-
-            OneYear = form.cleaned_data['OneYear']
-            Category = form.cleaned_data['Category']
-            Level = form.cleaned_data['Level']
-            Position = form.cleaned_data['Position']
-
-            h = 0
-            if int(Position) == 1:
-                if int(Level) in [1, 2, 3]:
-                    h += 10
-                elif int(Level) in [4, 5]:
-                    h += 20
-            elif int(Position) == 2:
-                if int(Level) in [1, 2, 3]:
-                    h += 8
-                elif int(Level) in [4, 5]:
-                    h += 16
-            elif int(Position) == 3:
-                if int(Level) in [1, 2, 3]:
-                    h += 5
-                elif int(Level) in [4, 5]:
-                    h += 12
-
-            if int(OneYear) * 1 == 1:
-                U = UserProfile.objects.get(user=request.user)
-                x = 10 * int(Category) + int(Level)
-                U.TotalCredits += (c[x] + h)
-                U.save()
-
             return redirect('/account')
+
 
 class prof_self_initiatives(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/prof_self_initiatives.html'
@@ -139,25 +73,13 @@ class prof_self_initiatives(LoginRequiredMixin, TemplateView):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
-
         form = Profform(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-
-            Category = form.cleaned_data['Category']
-            Level = form.cleaned_data['Level']
-
-            U = UserProfile.objects.get(user=request.user)
-            if int(Category) == 1 or int(Category) == 3:
-                x = 10 * int(Category) + int(Level)
-            elif Category != 0:
-                x = 10 * int(Category)
-            U.TotalCredits += p[x]
-            U.save()
-
             return redirect('/account')
+
 
 class Entrepreneurship_innovation(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/Entrepreneurship_innovation.html'
@@ -172,15 +94,8 @@ class Entrepreneurship_innovation(LoginRequiredMixin, TemplateView):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-
-            Category = form.cleaned_data['Category']
-
-            U = UserProfile.objects.get(user=request.user)
-            x = int(Category)
-            U.TotalCredits += e[x]
-            U.save()
-
             return redirect('/account')
+
 
 class Leadership_management(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/Leadership_management.html'
@@ -190,23 +105,13 @@ class Leadership_management(LoginRequiredMixin, TemplateView):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
-
-        print(request.POST)
         form = LeadForm(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-
-            Category = form.cleaned_data['Category']
-            SubCategory = form.cleaned_data['SubCategory']
-
-            U = UserProfile.objects.get(user=request.user)
-            x = 10 * int(Category) + int(SubCategory)
-            U.TotalCredits += l[x]
-            U.save()
-
             return redirect('/account')
+
 
 def register(request):
     if request.method == 'POST':
@@ -221,11 +126,11 @@ def register(request):
         else:
             args = {'error': 'Password not strong', 'erlink': '/account/register'}
             return render(request, 'accounts/regerror.html', args)
-
     else:
         form = RegistrationForm()
         args = {'form': form}
         return render(request, 'accounts/reg_form.html', args)
+
 
 class RegView(TemplateView):
     template_name = 'accounts/reg_form_2.html'
@@ -242,10 +147,10 @@ class RegView(TemplateView):
             post.save()
             return redirect('/account/profile/')
 
-O = RegView()
 
 @login_required
 def profile(request):
+    O = RegView()
     if request.user.is_authenticated:
         if UserProfile.objects.filter(user=request.user).exists():
             details = UserProfile.objects.get(user=request.user)
@@ -259,11 +164,13 @@ def profile(request):
 
     return redirect('/account')
 
+
 @login_required
 def view_natpage(request, id):
     natpage = get_object_or_404(NatPage, id=id)
     args = {'O': natpage, 'ref': n2}
     return render(request, 'accounts/nat_display.html', args)
+
 
 @login_required
 def view_gamepage(request, id):
@@ -271,11 +178,13 @@ def view_gamepage(request, id):
     args = {'O': gamepage, 'ref': g2}
     return render(request, 'accounts/game_display.html', args)
 
+
 @login_required
 def view_cultpage(request, id):
     cultpage = get_object_or_404(CultPage, id=id)
     args = {'O': cultpage, 'ref': c2}
     return render(request, 'accounts/cult_display.html', args)
+
 
 @login_required
 def view_profpage(request, id):
@@ -283,17 +192,20 @@ def view_profpage(request, id):
     args = {'O': profpage, 'ref': p2}
     return render(request, 'accounts/prof_display.html', args)
 
+
 @login_required
 def view_entrepage(request, id):
     entrepage = get_object_or_404(EntrePage, id=id)
     args = {'O': entrepage, 'ref': e2}
     return render(request, 'accounts/entre_display.html', args)
 
+
 @login_required
 def view_leadpage(request, id):
     leadpage = get_object_or_404(LeadPage, id=id)
     args = {'O': leadpage, 'ref': l2}
     return render(request, 'accounts/lead_display.html', args)
+
 
 @login_required
 def edit_profile(request):
@@ -310,6 +222,7 @@ def edit_profile(request):
         form = RegistrationForm2(instance=userprofile)
         args = {'form': form}
         return render(request, 'accounts/edit_profile.html', args)
+
 
 @login_required
 def edit_natpage(request, id):
@@ -343,6 +256,7 @@ def edit_natpage(request, id):
             return render(request, 'accounts/edit_natpage.html', args)
     else:
         return redirect('/account/')
+
 
 @login_required
 def edit_gamepage(request, id):
@@ -415,6 +329,7 @@ def edit_gamepage(request, id):
     else:
         return redirect('/account/')
 
+
 @login_required
 def edit_cultpage(request, id):
     cultpage = get_object_or_404(CultPage, id=id)
@@ -484,11 +399,13 @@ def edit_cultpage(request, id):
     else:
         return redirect('/account/')
 
+
 @login_required
 def edit_profpage(request, id):
     profpage = get_object_or_404(ProfPage, id=id)
     if profpage.user_id == request.user.id:
         U = UserProfile.objects.get(user=request.user)
+        y = 0
         if int(profpage.Category) == 1 or int(profpage.Category) == 3:
             y = 10 * int(profpage.Category) + int(profpage.Level)
         elif profpage.Category != 0:
@@ -505,6 +422,7 @@ def edit_profpage(request, id):
                 Level = form.cleaned_data['Level']
 
                 U.TotalCredits -= p[y]
+                x = 0
                 if int(Category) == 1 or int(Category) == 3:
                     x = 10 * int(Category) + int(Level)
                 elif Category != 0:
@@ -519,6 +437,7 @@ def edit_profpage(request, id):
             return render(request, 'accounts/edit_profpage.html', args)
     else:
         return redirect('/account/')
+
 
 @login_required
 def edit_entrepage(request, id):
@@ -548,6 +467,7 @@ def edit_entrepage(request, id):
             return render(request, 'accounts/edit_entrepage.html', args)
     else:
         return redirect('/account/')
+
 
 @login_required
 def edit_leadpage(request, id):
@@ -579,6 +499,7 @@ def edit_leadpage(request, id):
     else:
         return redirect('/account/')
 
+
 def delete_natpage(request, id):
     natpage = get_object_or_404(NatPage, id=id)
     U = UserProfile.objects.get(user=request.user)
@@ -590,6 +511,7 @@ def delete_natpage(request, id):
     natpage.delete()
 
     return redirect('/account/uploads/')
+
 
 def delete_gamepage(request, id):
     gamepage = get_object_or_404(GamePage, id=id)
@@ -621,6 +543,7 @@ def delete_gamepage(request, id):
 
     return redirect('/account/uploads/')
 
+
 def delete_cultpage(request, id):
     cultpage = get_object_or_404(CultPage, id=id)
     U = UserProfile.objects.get(user=request.user)
@@ -651,9 +574,11 @@ def delete_cultpage(request, id):
 
     return redirect('/account/uploads/')
 
+
 def delete_profpage(request, id):
     profpage = get_object_or_404(ProfPage, id=id)
     U = UserProfile.objects.get(user=request.user)
+    y = 0
     if int(profpage.Category) == 1 or int(profpage.Category) == 3:
         y = 10 * int(profpage.Category) + int(profpage.Level)
     elif profpage.Category != 0:
@@ -664,6 +589,7 @@ def delete_profpage(request, id):
     profpage.delete()
 
     return redirect('/account/uploads/')
+
 
 def delete_entrepage(request, id):
     entrepage = get_object_or_404(EntrePage, id=id)
@@ -676,6 +602,7 @@ def delete_entrepage(request, id):
 
     return redirect('/account/uploads/')
 
+
 def delete_leadpage(request, id):
     leadpage = get_object_or_404(LeadPage, id=id)
     U = UserProfile.objects.get(user=request.user)
@@ -686,6 +613,7 @@ def delete_leadpage(request, id):
     leadpage.delete()
 
     return redirect('/account/uploads/')
+
 
 @login_required
 def uploads(request):
@@ -700,6 +628,7 @@ def uploads(request):
             'l2': l2, 'n2': n2, 'c2': c2, 'p2': p2, 'e2': e2, 'g2': g2}
     return render(request, 'accounts/uploads.html', args)
 
+
 @login_required
 def change_password(request):
     if request.method == 'POST':
@@ -711,7 +640,6 @@ def change_password(request):
             return redirect('/account/profile')
         else:
             return redirect('/account/change-password')
-
     else:
         form = PasswordChangeForm(user=request.user)
         args = {'form': form}

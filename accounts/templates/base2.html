@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     {% load static %}
       <link  rel="stylesheet" href="{% static 'accounts/css/stylesheet.css' %}" type="text/css">
     {% block head %}
@@ -26,5 +29,12 @@
       {% endif %}
     {% block body %}
     {% endblock %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+      });
+    </script>
   </body>
 </html>

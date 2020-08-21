@@ -1,11 +1,10 @@
-     {% extends 'base2.html' %}
-                    {% block head %}
-                    <title>Cultural Activity</title>
-                    {% load static %}
-                    <link  rel="stylesheet" href="{% static 'accounts/css/stylesheet.css' %}" type="text/css">
-           <style>
-
-   h1   {color:#fff;}
+{% extends 'base2.html' %}
+    {% block head %}
+    <title>Cultural Activity</title>
+    {% load static %}
+    <link  rel="stylesheet" href="{% static 'accounts/css/stylesheet.css' %}" type="text/css">
+    <style>
+    h1 {color: #fff;}
     body,html {
         height: 100%;
         margin: 0;
@@ -28,95 +27,75 @@
       transform: translate(-50%, -50%);
       color: white;
     }
+    </style>
+    {% endblock %}
 
-    /*the container must be positioned relative:*/
-    .custom-select {
-      position: relative;
-      font-family: Arial;
-    }
-    .custom-select select {
-      display:none; /*hide original SELECT element:*/
-    }
-    .select-selected {
-		background-color:transparent;
-    }
-    /*style the arrow inside the select element:*/
-    .select-selected:after {
-      position: absolute;
-      content: "";
-      top: 14px;
-      right: 10px;
-      width: 0;
-      height: 0;
-      border: 6px solid transparent;
-      border-color: #fff transparent transparent transparent;
-    }
-    /*point the arrow upwards when the select box is open (active):*/
-    .select-selected.select-arrow-active:after {
-      border-color: transparent transparent #fff transparent;
-      top: 7px;
-    }
-    /*style the items (options), including the selected item:*/
-    .select-items div,.select-selected {
-      color:#fff;
-      padding: 8px 16px;
-      border: 1px solid transparent;
-      border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-      cursor: pointer;
-      user-select: none;
-    }
-    /*style items (options):*/
-    .select-items {
-      position: absolute;
-	  background-color:#09F;
-      top: 100%;
-      left: 0;
-      right: 0;
-      z-index: 99;
-    }
-    /*hide the items when the select box is closed:*/
-    .select-hide {
-      display: none;
-    }
-    .select-items div:hover {
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-
-    .container1{
-        margin-bottom: 50px;
-        left:18%;
-        width:55%;
-        height:56%;
-	    background-color: #b19cd9;
-	    background-size: cover;
-	    text-align:center;
-        color:white;
-    }
-
-        </style>
-          {% endblock %}
-                 <body class="Natpage" >
-                 {% block content %}
-                 <div class="hero-image">
-      <div class="hero-text">
-        <h1 style="font-size:50px">Cultural Activity</h1>
-
-      </div>
-    </div>
+    <body class="Natpage">
+     {% block content %}
+     <div class="hero-image">
+         <div class="hero-text">
+             <h1 style="font-size:50px">Cultural Activity</h1>
+         </div>
+     </div>
     {% endblock %}
 
     {% block body %}
-      <div class="container1">
-
-        <h2>Certificate</h2>
-         <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            {{ form.as_p }}
-
-             <button type="submit">Submit</button>
-         </form>
-         <br>
-       </div>
+      <div class="container" style="width: 40%; padding: 25px; margin-top: 30px; margin-bottom: 20px; background-color: white;">
+          <h4 class="center-align" style="margin-bottom: 25px;">Add Activity</h4>
+          <div class="row">
+              <form method="post" enctype="multipart/form-data" class="col s12">
+                  {% csrf_token %}
+                  <div class="row">
+                      <div class="col s12">
+                          <label>Participated for at least 1 year?</label>
+                          {% for choice in form.OneYear %}
+                          <p>
+                              <label>
+                                  {{ choice.tag }}
+                                  <span>{{ choice.choice_label }}</span>
+                              </label>
+                          </p>
+                          {% endfor %}
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s12">
+                          {{ form.Category }}
+                          {{ form.Category.label_tag }}
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s12">
+                          {{ form.Level }}
+                          {{ form.Level.label_tag }}
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s12">
+                          {{ form.Position }}
+                          {{ form.Position.label_tag }}
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s12">
+                          {{ form.DocType }}
+                          <label>Document type:</label>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="file-field input-field col s12">
+                          <div class="btn-small">
+                            <span>File</span>
+                            {{ form.File }}
+                          </div>
+                          <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Upload Certificate">
+                          </div>
+                      </div>
+                  </div>
+                  <button class="btn waves-effect waves-light" type="submit">Submit</button>
+              </form>
+          </div>
       </div>
     {% endblock %}
+    </body>

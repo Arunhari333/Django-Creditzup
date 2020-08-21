@@ -71,7 +71,7 @@ class Cultform(forms.ModelForm):
     class Meta:
         model = CultPage
         fields = ('OneYear', 'Category', 'Level', 'Position', 'DocType', 'File', 'Approved')
-        widgets = {'Approved': forms.HiddenInput()}
+        widgets = {'Approved': forms.HiddenInput(), 'OneYear': forms.RadioSelect}
 
 class Profform(forms.ModelForm):
     CHOICE = ((0, 'Select:'),
@@ -133,7 +133,7 @@ class Gameform(forms.ModelForm):
     class Meta:
         model = GamePage
         fields = ('OneYear', 'Category', 'Level', 'Position', 'DocType', 'File', 'Approved')
-        widgets = {'Approved': forms.HiddenInput()}
+        widgets = {'Approved': forms.HiddenInput(), 'OneYear': forms.RadioSelect}
 
 class NatForm(forms.ModelForm):
     CHOICE = ((1, 'Yes'), (2, 'No'))
@@ -154,4 +154,4 @@ class NatForm(forms.ModelForm):
     class Meta:
         model = NatPage
         fields = ('TwoYears', 'Category', 'SubCategory', 'DocType', 'File', 'Approved')
-        widgets = {'Approved': forms.HiddenInput()}
+        widgets = {'Approved': forms.HiddenInput(), 'TwoYears': forms.RadioSelect}

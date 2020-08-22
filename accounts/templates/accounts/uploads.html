@@ -11,7 +11,7 @@
                     <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
                         <div class="row" style="margin: 0px">
                             <div class="col s8">
-                            {% if O.Approved == True %}
+                            {% if O.Approved %}
                             <i class="small material-icons">assignment_turned_in</i>
                             {% endif %}
                             <h5 style="display:inline;">{{value}}</h5>
@@ -20,9 +20,11 @@
                             <a href="{% url 'accounts:delete_leadpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 0 0 10px; background-color: #d9534f;
                                text-decoration: none; padding: 0 15px;">Delete</a>
+                            {% if not O.Approved %}
                             <a href="{% url 'accounts:edit_leadpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #5cb85c;
                                text-decoration: none; padding: 0 15px;">Change</a>
+                            {% endif %}
                             <a href="{% url 'accounts:view_leadpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #8A2BE2;
                                text-decoration: none; padding: 0 15px;">View</a>
@@ -38,7 +40,7 @@
                     <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
                         <div class="row" style="margin: 0px">
                             <div class="col s8">
-                            {% if O.Approved == True %}
+                            {% if O.Approved %}
                             <i class="small material-icons">assignment_turned_in</i>
                             {% endif %}
                             <h5 style="display:inline;">{{value}}</h5>
@@ -47,9 +49,11 @@
                             <a href="{% url 'accounts:delete_natpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 0 0 10px; background-color: #d9534f;
                                text-decoration: none; padding: 0 15px;">Delete</a>
+                            {% if not O.Approved %}
                             <a href="{% url 'accounts:edit_natpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #5cb85c;
                                text-decoration: none; padding: 0 15px;">Change</a>
+                            {% endif %}
                             <a href="{% url 'accounts:view_natpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #8A2BE2;
                                text-decoration: none; padding: 0 15px;">View</a>
@@ -65,7 +69,7 @@
                     <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
                         <div class="row" style="margin: 0px">
                             <div class="col s8">
-                            {% if O.Approved == True %}
+                            {% if O.Approved %}
                             <i class="small material-icons">assignment_turned_in</i>
                             {% endif %}
                             <h5 style="display:inline;">{{value}}</h5>
@@ -74,9 +78,11 @@
                             <a href="{% url 'accounts:delete_cultpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 0 0 10px; background-color: #d9534f;
                                text-decoration: none; padding: 0 15px;">Delete</a>
+                            {% if not O.Approved %}
                             <a href="{% url 'accounts:edit_cultpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #5cb85c;
                                text-decoration: none; padding: 0 15px;">Change</a>
+                            {% endif %}
                             <a href="{% url 'accounts:view_cultpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #8A2BE2;
                                text-decoration: none; padding: 0 15px;">View</a>
@@ -92,7 +98,7 @@
                     <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
                         <div class="row" style="margin: 0px">
                             <div class="col s8">
-                            {% if O.Approved == True %}
+                            {% if O.Approved %}
                                 <i class="small material-icons">assignment_turned_in</i>
                             {% endif %}
                             <h5 style="display:inline;">{{value}}</h5>
@@ -101,9 +107,11 @@
                             <a href="{% url 'accounts:delete_profpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 0 0 10px; background-color: #d9534f;
                                text-decoration: none; padding: 0 15px;">Delete</a>
+                            {% if not O.Approved %}
                             <a href="{% url 'accounts:edit_profpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #5cb85c;
                                text-decoration: none; padding: 0 15px;">Change</a>
+                            {% endif %}
                             <a href="{% url 'accounts:view_profpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #8A2BE2;
                                text-decoration: none; padding: 0 15px;">View</a>
@@ -119,7 +127,7 @@
                     <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
                         <div class="row" style="margin: 0px">
                             <div class="col s8">
-                            {% if O.Approved == True %}
+                            {% if O.Approved %}
                             <i class="small material-icons">assignment_turned_in</i>
                             {% endif %}
                             <h5 style="display:inline;">{{value}}</h5>
@@ -128,9 +136,11 @@
                             <a href="{% url 'accounts:delete_entrepage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 0 0 10px; background-color: #d9534f;
                                text-decoration: none; padding: 0 15px;">Delete</a>
+                            {% if not O.Approved %}
                             <a href="{% url 'accounts:edit_entrepage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #5cb85c;
                                text-decoration: none; padding: 0 15px;">Change</a>
+                            {% endif %}
                             <a href="{% url 'accounts:view_entrepage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #8A2BE2;
                                text-decoration: none; padding: 0 15px;">View</a>
@@ -146,7 +156,7 @@
                     <div class="card-panel teal lighten-2" style="padding: 30px; vertical-align: middle;">
                         <div class="row" style="margin: 0px">
                             <div class="col s8">
-                            {% if O.Approved == True %}
+                            {% if O.Approved %}
                                 <i class="small material-icons">assignment_turned_in</i>
                             {% endif %}
                             <h5 style="display:inline;">{{value}}</h5>
@@ -155,9 +165,11 @@
                             <a href="{% url 'accounts:delete_gamepage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 0 0 10px; background-color: #d9534f;
                                text-decoration: none; padding: 0 15px;">Delete</a>
+                            {% if not O.Approved %}
                             <a href="{% url 'accounts:edit_gamepage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #5cb85c;
                                text-decoration: none; padding: 0 15px;">Change</a>
+                            {% endif %}
                             <a href="{% url 'accounts:view_gamepage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #8A2BE2;
                                text-decoration: none; padding: 0 15px;">View</a>

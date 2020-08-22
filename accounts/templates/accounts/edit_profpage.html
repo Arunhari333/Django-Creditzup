@@ -1,23 +1,6 @@
 {% extends 'base2.html' %}
     {% block head %}
         <title>Edit Uploads</title>
-        <style>
-            .container1{
-                margin-bottom: 50px;
-                left:18%;
-                width:55%;
-                background-color: #b19cd9;
-                background-size: cover;
-                text-align:center;
-                color:white;
-            }
-            .h1{
-                font-size: 4rem;
-                line-height: 110%;
-                font-weight: 400;
-                font-family: "Roboto", sans-serif;
-            }
-        </style>
     {% endblock %}
 
     {% block content %}
@@ -25,13 +8,42 @@
     {% endblock %}
 
     {% block body %}
-        <div class="container1">
-            <h2>Change Uploaded Data</h2>
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Submit</button>
-            </form>
-            <br>
-        </div>
+      <div class="container" style="width: 50%; padding: 25px; margin-top: 30px; margin-bottom: 20px; background-color: white;">
+          <h4 class="center-align" style="margin-bottom: 25px;">Edit Activity</h4>
+          <div class="row">
+              <form method="post" enctype="multipart/form-data" class="col s12">
+                  {% csrf_token %}
+                  <div class="row">
+                      <div class="input-field col s12">
+                          {{ form.Category }}
+                          {{ form.Category.label_tag }}
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s12">
+                          {{ form.Level }}
+                          {{ form.Level.label_tag }}
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s12">
+                          {{ form.DocType }}
+                          <label>Document type:</label>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="file-field input-field col s12">
+                          <div class="btn-small">
+                            <span>File</span>
+                            {{ form.File }}
+                          </div>
+                          <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Upload Certificate">
+                          </div>
+                      </div>
+                  </div>
+                  <button class="btn waves-effect waves-light" type="submit">Submit</button>
+              </form>
+          </div>
+      </div>
     {% endblock %}

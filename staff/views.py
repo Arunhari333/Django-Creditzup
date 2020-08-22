@@ -117,13 +117,13 @@ def approve_natpage(request, uid, id):
     Category = natpage.Category
     SubCategory = natpage.SubCategory
 
-    if int(TwoYears) * 1 == 1:
+    if int(TwoYears) == 1:
         U = UserProfile.objects.get(user_id=uid)
-        x = 10 * int(Category) + int(SubCategory)
+        points = nat_point_calc(Category, SubCategory)
         if natpage.Approved:
-            U.TotalCredits += n[x]
+            U.TotalCredits += points
         else:
-            U.TotalCredits -= n[x]
+            U.TotalCredits -= points
         U.save()
 
     return redirect('/staff/student-details/{}'.format(uid))
@@ -140,30 +140,13 @@ def approve_gamepage(request, uid, id):
     Level = gamepage.Level
     Position = gamepage.Position
 
-    h = 0
-    if int(Position) == 1:
-        if int(Level) in [1, 2, 3]:
-            h += 10
-        elif int(Level) in [4, 5]:
-            h += 20
-    elif int(Position) == 2:
-        if int(Level) in [1, 2, 3]:
-            h += 8
-        elif int(Level) in [4, 5]:
-            h += 16
-    elif int(Position) == 3:
-        if int(Level) in [1, 2, 3]:
-            h += 5
-        elif int(Level) in [4, 5]:
-            h += 12
-
-    if int(OneYear) * 1 == 1:
+    if int(OneYear) == 1:
         U = UserProfile.objects.get(user_id=uid)
-        x = 10 * int(Category) + int(Level)
+        points = game_point_calc(Category, Level, Position)
         if gamepage.Approved:
-            U.TotalCredits += (s[x] + h)
+            U.TotalCredits += points
         else:
-            U.TotalCredits -= (s[x] + h)
+            U.TotalCredits -= points
         U.save()
 
     return redirect('/staff/student-details/{}'.format(uid))
@@ -180,30 +163,13 @@ def approve_cultpage(request, uid, id):
     Level = cultpage.Level
     Position = cultpage.Position
 
-    h = 0
-    if int(Position) == 1:
-        if int(Level) in [1, 2, 3]:
-            h += 10
-        elif int(Level) in [4, 5]:
-            h += 20
-    elif int(Position) == 2:
-        if int(Level) in [1, 2, 3]:
-            h += 8
-        elif int(Level) in [4, 5]:
-            h += 16
-    elif int(Position) == 3:
-        if int(Level) in [1, 2, 3]:
-            h += 5
-        elif int(Level) in [4, 5]:
-            h += 12
-
-    if int(OneYear) * 1 == 1:
+    if int(OneYear) == 1:
         U = UserProfile.objects.get(user_id=uid)
-        x = 10 * int(Category) + int(Level)
+        points = cult_point_calc(Category, Level, Position)
         if cultpage.Approved:
-            U.TotalCredits += (c[x] + h)
+            U.TotalCredits += points
         else:
-            U.TotalCredits -= (c[x] + h)
+            U.TotalCredits -= points
         U.save()
 
     return redirect('/staff/student-details/{}'.format(uid))
@@ -219,15 +185,11 @@ def approve_profpage(request, uid, id):
     Level = profpage.Level
 
     U = UserProfile.objects.get(user_id=uid)
-    x = 0
-    if int(Category) == 1 or int(Category) == 3:
-        x = 10 * int(Category) + int(Level)
-    elif Category != 0:
-        x = 10 * int(Category)
+    points = prof_point_calc(Category, Level)
     if profpage.Approved:
-        U.TotalCredits += p[x]
+        U.TotalCredits += points
     else:
-        U.TotalCredits -= p[x]
+        U.TotalCredits -= points
     U.save()
 
     return redirect('/staff/student-details/{}'.format(uid))
@@ -242,11 +204,11 @@ def approve_entrepage(request, uid, id):
     Category = entrepage.Category
 
     U = UserProfile.objects.get(user_id=uid)
-    x = int(Category)
+    points = entre_point_calc(Category)
     if entrepage.Approved:
-        U.TotalCredits += e[x]
+        U.TotalCredits += points
     else:
-        U.TotalCredits -= e[x]
+        U.TotalCredits -= points
     U.save()
 
     return redirect('/staff/student-details/{}'.format(uid))
@@ -262,11 +224,11 @@ def approve_leadpage(request, uid, id):
     SubCategory = leadpage.SubCategory
 
     U = UserProfile.objects.get(user_id=uid)
-    x = 10 * int(Category) + int(SubCategory)
+    points = lead_point_calc(Category, SubCategory)
     if leadpage.Approved:
-        U.TotalCredits += l[x]
+        U.TotalCredits += points
     else:
-        U.TotalCredits -= l[x]
+        U.TotalCredits -= points
     U.save()
 
     return redirect('/staff/student-details/{}'.format(uid))

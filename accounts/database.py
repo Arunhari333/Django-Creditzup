@@ -153,3 +153,63 @@ c2 = cult()
 p2 = prof()
 e2 = entr()
 g2 = game()
+
+def nat_point_calc(Category, SubCategory):
+    x = 10 * int(Category) + int(SubCategory)
+    return n[x]
+
+def game_point_calc(Category, Level, Position):
+    h = 0
+    if int(Position) == 1:
+        if int(Level) in [1, 2, 3]:
+            h += 10
+        elif int(Level) in [4, 5]:
+            h += 20
+    elif int(Position) == 2:
+        if int(Level) in [1, 2, 3]:
+            h += 8
+        elif int(Level) in [4, 5]:
+            h += 16
+    elif int(Position) == 3:
+        if int(Level) in [1, 2, 3]:
+            h += 5
+        elif int(Level) in [4, 5]:
+            h += 12
+    x = 10 * int(Category) + int(Level)
+    return s[x]+h
+
+def cult_point_calc(Category, Level, Position):
+    h = 0
+    if int(Position) == 1:
+        if int(Level) in [1, 2, 3]:
+            h += 10
+        elif int(Level) in [4, 5]:
+            h += 20
+    elif int(Position) == 2:
+        if int(Level) in [1, 2, 3]:
+            h += 8
+        elif int(Level) in [4, 5]:
+            h += 16
+    elif int(Position) == 3:
+        if int(Level) in [1, 2, 3]:
+            h += 5
+        elif int(Level) in [4, 5]:
+            h += 12
+    x = 10 * int(Category) + int(Level)
+    return c[x]+h
+
+def prof_point_calc(Category, Level):
+    x = 0
+    if int(Category) == 1 or int(Category) == 3:
+        x = 10 * int(Category) + int(Level)
+    elif Category != 0:
+        x = 10 * int(Category)
+    return p[x]
+
+def entre_point_calc(Category):
+    x = int(Category)
+    return e[x]
+
+def lead_point_calc(Category, SubCategory):
+    x = 10 * int(Category) + int(SubCategory)
+    return l[x]

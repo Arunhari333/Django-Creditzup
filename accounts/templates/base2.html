@@ -14,11 +14,11 @@
       {% endblock %}
       {% if user.is_authenticated %}
         <div class="topnav">
-            <a href="/account/profile">Profile</a>
-            <a href="/account/">Home</a>
-            <a href="/account/uploads/">Uploads</a>
-            <a href="/account/change-password">Change Password</a>
-            <a href="/account/logout" class="right">Logout</a>
+            <a href="/account/profile" class="bttn">Profile</a>
+            <a href="/account/" class="bttn">Home</a>
+            <a href="/account/uploads/" class="bttn">Uploads</a>
+            <a href="/account/change-password" class="bttn">Change Password</a>
+            <a href="/account/logout" class="bttn right">Logout</a>
         </div>
       {% else %}
             <div class="topnav">

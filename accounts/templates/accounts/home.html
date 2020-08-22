@@ -1,47 +1,51 @@
 {% extends 'base.html' %}
 
-        {% block head %}
-        <title>Home</title>
-        {% load static %}
-        {% endblock %}
+    {% block head %}
+    <title>Home</title>
+    {% load static %}
+    {% endblock %}
 
     {% block body %}
     <div class="container1">
   <img src="{% static 'accounts\images\national.jpg' %}" alt="National Initiative" class="image" style="width:100%">
   <div class="middle">
-    <div class="text"><a href="/account/national-initiatives">National Initiatives</a></div>
+    <div class="text"><a href="{% url 'accounts:natpage' %}">National Initiatives</a></div>
   </div>
   </div>
  <div class="container1">
   <img src="{% static 'accounts\images\games.jpeg' %}" alt="Games"  class="image" style="width:100%">
   <div class="middle">
-    <div class="text"><a href="/account/sports-&-games">Sports and Games</a></div>
+    <div class="text"><a href="{% url 'accounts:gamepage' %}">Sports and Games</a></div>
   </div>
 </div>
 <div class="container1">
   <img src="{% static 'accounts\images\cultural.png' %}" alt="Games"  class="image" style="width:100%">
   <div class="middle">
-    <div class="text"><a href="/account/cultural-activities">Cultural Activity</a></div>
+    <div class="text"><a href="{% url 'accounts:cultpage' %}">Cultural Activity</a></div>
   </div>
 </div>
    <div class="container1">
   <img src="{% static 'accounts\images\leadership.jpeg' %}" alt="chess board" class="image" style="width:100%">
   <div class="middle">
-    <div class="text"><a href="/account/leadership-&-management">Leadership and Management</a></div>
+    <div class="text"><a href="{% url 'accounts:leadpage' %}">Leadership and Management</a></div>
   </div>
 </div>
    <div class="container1">
   <img src="{% static 'accounts\images\technology.jpg' %}" alt="Technology" class="image" style="width:100%">
   <div class="middle">
-    <div class="text"><a href="/account/prof-self-initiatives">Professional Self Initiatives</a></div>
+    <div class="text"><a href="{% url 'accounts:profpage' %}">Professional Self Initiatives</a></div>
   </div>
 </div>
  <div class="container1">
   <img src="{% static 'accounts\images\innovation.jpg' %}" alt="bulb" class="image" style="width:100%">
   <div class="middle">
-    <div class="text"><a href="/account/entrepreneurship-&-innovation"> Entrepreneurship and Innovation</a></div>
+    <div class="text"><a href="{% url 'accounts:entrepage' %}"> Entrepreneurship and Innovation</a></div>
   </div>
  </div>
  {% endblock %}
+
+{% block js %}
+<script>Activate(1)</script>
+{% endblock %}
 
 <!--python -m smtpd -n -c DebuggingServer localhost:1025-->

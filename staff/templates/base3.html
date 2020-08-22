@@ -13,7 +13,7 @@
         <h1 align="center" class="h1"><em>CreditZup Admin</em></h1>
         <div class="topnav">
             <a href="/staff/search" class="bttn">Search</a>
-            <a href="/staff/home" class="bttn active">Home</a>
+            <a href="/staff/home" class="bttn">Home</a>
             <a href="/account/logout" class="bttn right">Logout</a>
         </div>
     {% block body %}
@@ -45,6 +45,9 @@
         }
         const csrftoken = getCookie('csrftoken')
   </script>
+  <script src="{% static 'staff/js/base.js' %}"></script>
   <script src="{% static 'staff/js/search.js' %}"></script>
+  {% block js %}
+  {% endblock %}
   </body>
 </html>

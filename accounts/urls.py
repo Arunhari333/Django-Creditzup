@@ -8,12 +8,12 @@ app_name = 'accounts'
 
 urlpatterns = [
     path('', views.home),
-    path('national-initiatives', views.national_initiatives.as_view()),
-    path('sports-&-games', views.sports_games.as_view()),
-    path('cultural-activities', views.cultural_activities.as_view()),
-    path('prof-self-initiatives', views.prof_self_initiatives.as_view()),
-    path('entrepreneurship-&-innovation', views.Entrepreneurship_innovation.as_view()),
-    path('leadership-&-management', views.Leadership_management.as_view()),
+    path('national-initiatives', views.national_initiatives.as_view(), name='natpage'),
+    path('sports-&-games', views.sports_games.as_view(), name='gamepage'),
+    path('cultural-activities', views.cultural_activities.as_view(), name='cultpage'),
+    path('prof-self-initiatives', views.prof_self_initiatives.as_view(), name='profpage'),
+    path('entrepreneurship-&-innovation', views.Entrepreneurship_innovation.as_view(), name='entrepage'),
+    path('leadership-&-management', views.Leadership_management.as_view(), name='leadpage'),
     path('login/', LoginView.as_view(template_name='accounts/login.html')),
     path('logout/', LogoutView.as_view(template_name='accounts/logout.html')),
     path('register/', views.register, name='register'),

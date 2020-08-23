@@ -341,7 +341,7 @@ def edit_leadpage(request, id):
 def delete_natpage(request, id):
     natpage = get_object_or_404(NatPage, id=id)
     U = UserProfile.objects.get(user=request.user)
-    if int(natpage.TwoYears) == 1:
+    if int(natpage.TwoYears) == 1 and natpage.Approved:
         points = nat_point_calc(natpage.Category, natpage.SubCategory)
         U.TotalCredits -= points
         U.save()
@@ -356,7 +356,7 @@ def delete_gamepage(request, id):
     U = UserProfile.objects.get(user=request.user)
     points = game_point_calc(gamepage.Category, gamepage.Level)
 
-    if int(gamepage.OneYear) == 1:
+    if int(gamepage.OneYear) == 1 and gamepage.Approved:
         U.TotalCredits -= points
         U.save()
 
@@ -370,7 +370,7 @@ def delete_cultpage(request, id):
     U = UserProfile.objects.get(user=request.user)
     points = cult_point_calc(cultpage.Category, cultpage.Level, cultpage.Position)
 
-    if int(cultpage.OneYear) == 1:
+    if int(cultpage.OneYear) == 1 and cultpage.Approved:
         U.TotalCredits -= points
         U.save()
 
@@ -382,9 +382,10 @@ def delete_cultpage(request, id):
 def delete_profpage(request, id):
     profpage = get_object_or_404(ProfPage, id=id)
     U = UserProfile.objects.get(user=request.user)
-    points = prof_point_calc(profpage.Category, profpage.Level)
-    U.TotalCredits -= points
-    U.save()
+    if profpage.Approved:
+        points = prof_point_calc(profpage.Category, profpage.Level)
+        U.TotalCredits -= points
+        U.save()
 
     profpage.delete()
 
@@ -394,9 +395,10 @@ def delete_profpage(request, id):
 def delete_entrepage(request, id):
     entrepage = get_object_or_404(EntrePage, id=id)
     U = UserProfile.objects.get(user=request.user)
-    points = entre_point_calc(entrepage.Category)
-    U.TotalCredits -= points
-    U.save()
+    if entrepage.Approved:
+        points = entre_point_calc(entrepage.Category)
+        U.TotalCredits -= points
+        U.save()
 
     entrepage.delete()
 
@@ -406,9 +408,10 @@ def delete_entrepage(request, id):
 def delete_leadpage(request, id):
     leadpage = get_object_or_404(LeadPage, id=id)
     U = UserProfile.objects.get(user=request.user)
-    points = lead_point_calc(leadpage.Category, leadpage.SubCategory)
-    U.TotalCredits -= points
-    U.save()
+    if leadpage.Approved:
+        points = lead_point_calc(leadpage.Category, leadpage.SubCategory)
+        U.TotalCredits -= points
+        U.save()
 
     leadpage.delete()
 

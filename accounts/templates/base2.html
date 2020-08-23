@@ -14,17 +14,17 @@
       {% endblock %}
       {% if user.is_authenticated %}
         <div class="topnav">
-            <a href="/account/profile" class="bttn">Profile</a>
-            <a href="/account/" class="bttn">Home</a>
-            <a href="/account/uploads/" class="bttn">Uploads</a>
-            <a href="/account/change-password" class="bttn">Change Password</a>
-            <a href="/account/logout" class="bttn right">Logout</a>
+            <a href="{% url 'accounts:profile' %}" class="bttn">Profile</a>
+            <a href="{% url 'accounts:home' %}" class="bttn">Home</a>
+            <a href="{% url 'accounts:uploads' %}" class="bttn">Uploads</a>
+            <a href="{% url 'accounts:change_password' %}" class="bttn">Change Password</a>
+            <a href="{% url 'accounts:logout' %}" class="bttn right">Logout</a>
         </div>
       {% else %}
             <div class="topnav">
-                <a href="/account/login">Login</a>
-                <a href="/account/register">Register</a>
-                <a href="/staff/home" class="right">Admin-Login</a>
+                <a href="{% url 'accounts:login' %}" class="bttn">Login</a>
+                <a href="{% url 'accounts:register' %}" class="bttn">Register</a>
+                <a href="{% url 'staff:home' %}" class="bttn right">Admin-Login</a>
             </div>
       {% endif %}
     {% block body %}

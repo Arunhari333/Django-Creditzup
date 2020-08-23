@@ -17,9 +17,9 @@
                             <h5 style="display:inline;">{{value}}</h5>
                             </div>
                             <div class="col s4">
-                            <a href="{% url 'accounts:delete_leadpage' O.id %}" class="waves-effect waves-light btn"
-                               style="float:right; margin: 0 0 0 10px; background-color: #d9534f;
-                               text-decoration: none; padding: 0 15px;">Delete</a>
+                            <button data-target="modal-delete" class="waves-effect waves-light btn vcd-button modal-trigger"
+                               data-id={{O.id}} data-url="leadership-&-management" onclick="updateModal(this)"
+                               style="background-color: #d9534f;">Delete</button>
                             {% if not O.Approved %}
                             <a href="{% url 'accounts:edit_leadpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #5cb85c;
@@ -46,9 +46,9 @@
                             <h5 style="display:inline;">{{value}}</h5>
                             </div>
                             <div class="col s4">
-                            <a href="{% url 'accounts:delete_natpage' O.id %}" class="waves-effect waves-light btn"
-                               style="float:right; margin: 0 0 0 10px; background-color: #d9534f;
-                               text-decoration: none; padding: 0 15px;">Delete</a>
+                            <button data-target="modal-delete" class="waves-effect waves-light btn vcd-button modal-trigger"
+                               data-id={{O.id}} data-url="national-initiatives" onclick="updateModal(this)"
+                               style="background-color: #d9534f;">Delete</button>
                             {% if not O.Approved %}
                             <a href="{% url 'accounts:edit_natpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #5cb85c;
@@ -75,9 +75,9 @@
                             <h5 style="display:inline;">{{value}}</h5>
                             </div>
                             <div class="col s4">
-                            <a href="{% url 'accounts:delete_cultpage' O.id %}" class="waves-effect waves-light btn"
-                               style="float:right; margin: 0 0 0 10px; background-color: #d9534f;
-                               text-decoration: none; padding: 0 15px;">Delete</a>
+                            <button data-target="modal-delete" class="waves-effect waves-light btn vcd-button modal-trigger"
+                               data-id={{O.id}} data-url="cultural-activities" onclick="updateModal(this)"
+                               style="background-color: #d9534f;">Delete</button>
                             {% if not O.Approved %}
                             <a href="{% url 'accounts:edit_cultpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #5cb85c;
@@ -104,9 +104,9 @@
                             <h5 style="display:inline;">{{value}}</h5>
                             </div>
                             <div class="col s4">
-                            <a href="{% url 'accounts:delete_profpage' O.id %}" class="waves-effect waves-light btn"
-                               style="float:right; margin: 0 0 0 10px; background-color: #d9534f;
-                               text-decoration: none; padding: 0 15px;">Delete</a>
+                            <button data-target="modal-delete" class="waves-effect waves-light btn vcd-button modal-trigger"
+                               data-id={{O.id}} data-url="prof-self-initiatives" onclick="updateModal(this)"
+                               style="background-color: #d9534f;">Delete</button>
                             {% if not O.Approved %}
                             <a href="{% url 'accounts:edit_profpage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #5cb85c;
@@ -133,9 +133,9 @@
                             <h5 style="display:inline;">{{value}}</h5>
                             </div>
                             <div class="col s4">
-                            <a href="{% url 'accounts:delete_entrepage' O.id %}" class="waves-effect waves-light btn"
-                               style="float:right; margin: 0 0 0 10px; background-color: #d9534f;
-                               text-decoration: none; padding: 0 15px;">Delete</a>
+                            <button data-target="modal-delete" class="waves-effect waves-light btn vcd-button modal-trigger"
+                               data-id={{O.id}} data-url="entrepreneurship-&-innovation" onclick="updateModal(this)"
+                               style="background-color: #d9534f;">Delete</button>
                             {% if not O.Approved %}
                             <a href="{% url 'accounts:edit_entrepage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #5cb85c;
@@ -162,9 +162,9 @@
                             <h5 style="display:inline;">{{value}}</h5>
                             </div>
                             <div class="col s4">
-                            <a href="{% url 'accounts:delete_gamepage' O.id %}" class="waves-effect waves-light btn"
-                               style="float:right; margin: 0 0 0 10px; background-color: #d9534f;
-                               text-decoration: none; padding: 0 15px;">Delete</a>
+                            <button data-target="modal-delete" class="waves-effect waves-light btn vcd-button modal-trigger"
+                               data-id={{O.id}} data-url="sports-&-games" onclick="updateModal(this)"
+                               style="background-color: #d9534f;">Delete</button>
                             {% if not O.Approved %}
                             <a href="{% url 'accounts:edit_gamepage' O.id %}" class="waves-effect waves-light btn"
                                style="float:right; margin: 0 10px; background-color: #5cb85c;
@@ -179,6 +179,16 @@
                 {% endif %}
             {% endfor %}
         {% endfor %}
+    </div>
+
+    <div id="modal-delete" class="modal">
+        <div class="modal-content">
+            <h5>Are you sure you want to delete?</h5>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-close waves-effect waves-grey btn-flat">Cancel</button>
+            <a href="#" class="modal-close waves-effect waves-red btn-flat" id="confirm" style="color: black;">Confirm</a>
+        </div>
     </div>
 {% endblock %}
 

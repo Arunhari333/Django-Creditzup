@@ -12,9 +12,9 @@
   <body>
         <h1 align="center" class="h1"><em>CreditZup Admin</em></h1>
         <div class="topnav">
-            <a href="/staff/search" class="bttn">Search</a>
-            <a href="/staff/home" class="bttn">Home</a>
-            <a href="/account/logout" class="bttn right">Logout</a>
+            <a href="{% url 'staff:search' %}" class="bttn">Search</a>
+            <a href="{% url 'staff:home' %}" class="bttn">Home</a>
+            <a href="{% url 'accounts:logout' %}" class="bttn right">Logout</a>
         </div>
     {% block body %}
     {% endblock %}

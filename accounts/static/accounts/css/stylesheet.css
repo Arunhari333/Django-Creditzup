@@ -113,5 +113,11 @@ a:active {
 	a:link {
     text-decoration: none;
 	color:white;
+}
 
+.vcd-button{
+    float:right;
+    margin-left: 10px;
+    text-decoration: none;
+    padding: 0 15px;
 }
